@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TodayViewController: BaseViewController {
+    let titleLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,19 +17,23 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-//        enableConstraints()
+        enableConstraints()
     }
     
     func setup() {
-//        view.backgroundColor = UIColor(red: 173/255, green: 216/255, blue: 230/255, alpha: 1.0)
-        view.backgroundColor = .white
-        navigationItem.title = "Today"
-
+        titleLabel.text = "Today"
+        view.addSubview(titleLabel)
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+       navigationItem.title = "Today"
+    }
+    
     func enableConstraints() {
-       
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
     }
 
 

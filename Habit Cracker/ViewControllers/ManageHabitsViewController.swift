@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ManageHabitsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     let table = UITableView()
-    var habitList: [Habit]?
+    var habitList: [Habit] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +21,12 @@ class ManageHabitsViewController: UIViewController, UITableViewDelegate, UITable
         setup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        habitList = readHabitFile()
-        print(habitList ?? "empty" )
+    override func viewWillAppear(_ animated: Bool) {
+        habitList = Habit.readHabitFile()
         table.reloadData()
+        
+        navigationItem.title = "Manage Habits"
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -32,16 +34,16 @@ class ManageHabitsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func setup() {
-        navigationItem.title = "Manage Habits"
-        view.backgroundColor = .white
         view.addSubview(table)
         
         table.isScrollEnabled = true
+//        table.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.8)
         
-        let addHabitAction = UIAction() { _ in
+        let createHabitAction = UIAction() { _ in
             self.navigationController?.pushViewController(CreateHabitViewController(), animated: true)
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: addHabitAction)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: createHabitAction)
     }
     
     func enableConstraints() {
@@ -52,39 +54,74 @@ class ManageHabitsViewController: UIViewController, UITableViewDelegate, UITable
         table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
-    func readHabitFile() -> [Habit]? {
-        do {
-            guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-            let fileName = "HabitList.txt"
-            
-            let data = try Data(contentsOf: url.appendingPathComponent(fileName))
-            
-            guard let decodedHabit = Habit.decode(data: data) else {return nil}
-            
-            return decodedHabit 
-                  
-        } catch {
-            print("ERROR M: ", error)
-            return nil
-        }
-        
+    func numberOfSections(in tableView: UITableView) -> Int {
+        habitList.count
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView = UIView()
+            headerView.backgroundColor = UIColor.clear
+            return headerView
+        }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return habitList?.count ?? 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "HabitCell")
-        cell.detailTextLabel?.numberOfLines = 0
+        let cell = HabitTableViewCell(style: .subtitle, reuseIdentifier: "HabitCell")
         
+        habitList[indexPath.section].calculateDaysElapsed()
+        
+        cell.textLabel?.text = habitList[indexPath.section].habitName
         cell.detailTextLabel?.text = """
-Habit: \(habitList?[indexPath.row].habitName ?? "Empty")
-Set Reminder? \(habitList?[indexPath.row].showReminder ?? false ? "Yes" : "No")
+Days Cracked: \(habitList[indexPath.section].daysElapsed)
+Set Reminder? \(habitList[indexPath.section].showReminder ? "Yes" : "No")
 """
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        let fileName = "HabitList.txt"
+        
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (actions, view, completionHander) in
+            self.habitList.remove(at: indexPath.section)
+            let data = self.habitList.encode()
+            do {
+                try data.write(to: url.appendingPathComponent(fileName))
+                self.table.reloadData()
+                completionHander(true)
+            } catch {
+                print(error)
+            }
+        }
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHander) in
+            self.navigationController?.pushViewController(EditHabitViewController(habit: self.habitList[indexPath.section]), animated: true)
+            completionHander(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return table.frame.size.height/4
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        habitList[indexPath.section].calculateDaysElapsed()
+    }
+    
 
     /*
     // MARK: - Navigation

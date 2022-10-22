@@ -8,14 +8,23 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .white
+//        UILabel.appearance().font = UIFont(name: "Arial", size: 30)
+//        UITextField.appearance().font = UIFont(name: "Arial", size: 30)
+        
         // Do any additional setup after loading the view.
     }
     
-
+    
+//    override func present(_ viewControllerToPresent: UIViewController,
+//                            animated flag: Bool,
+//                            completion: (() -> Void)? = nil) {
+//        viewControllerToPresent.modalPresentationStyle = .formSheet
+//        super.present(viewControllerToPresent, animated: flag, completion: completion)
+//      }
     /*
     // MARK: - Navigation
 

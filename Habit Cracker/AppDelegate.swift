@@ -14,7 +14,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let navbarAppearance = UINavigationBarAppearance()
+        navbarAppearance.backgroundColor = UIColor(displayP3Red: 100/255, green: 45/255, blue: 175/255, alpha: 1.0)
+//        navbarAppearance.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.7)
+        UINavigationBar.appearance().standardAppearance = navbarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navbarAppearance
+        
+        if #available(iOS 13.0, *) {
+            let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+            let tabBarItemAppearance = UITabBarItemAppearance()
+            
+            tabBarAppearance.backgroundColor = UIColor(displayP3Red: 100/255, green: 45/255, blue: 175/255, alpha: 1.0)
+//            tabBarAppearance.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.8)
+            tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            tabBarItemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(displayP3Red: 0/255, green: 100/255, blue: 200/255, alpha: 1.0)]
+            tabBarItemAppearance.selected.iconColor = UIColor(displayP3Red: 0/255, green: 100/255, blue: 200/255, alpha: 1.0)
+            tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
+            
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        } else {
+            UITabBar.appearance().barTintColor = UIColor(displayP3Red: 0/255, green: 45/255, blue: 156/255, alpha: 1.0)
+            UITabBar.appearance().isTranslucent = true
+            UITabBar.appearance().tintColor = .white
+            UITabBar.appearance().unselectedItemTintColor = .black
+        }
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        .portrait
     }
 
     // MARK: UISceneSession Lifecycle
@@ -33,4 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+
 

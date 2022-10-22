@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76374EAB2903D2D30003828F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76374EAA2903D2D30003828F /* SettingsViewController.swift */; };
+		76374EAD290469120003828F /* DaysOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76374EAC290469120003828F /* DaysOfWeek.swift */; };
+		764047FA28D3E67C00A5A0F9 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764047F928D3E67C00A5A0F9 /* Habit.swift */; };
+		7640480028D4F87000A5A0F9 /* HabitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764047FF28D4F87000A5A0F9 /* HabitTableViewCell.swift */; };
+		7640480228D8118600A5A0F9 /* DaySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7640480128D8118600A5A0F9 /* DaySelectionView.swift */; };
+		76640AFB28EF303F006B770A /* EditHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76640AFA28EF303F006B770A /* EditHabitViewController.swift */; };
+		76640AFD28EF3189006B770A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76640AFC28EF3189006B770A /* BaseViewController.swift */; };
 		76E8293828CAA00400C45758 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8293728CAA00400C45758 /* AppDelegate.swift */; };
 		76E8293A28CAA00400C45758 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8293928CAA00400C45758 /* SceneDelegate.swift */; };
-		76E8293C28CAA00400C45758 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8293B28CAA00400C45758 /* ViewController.swift */; };
-		76E8293F28CAA00400C45758 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E8293D28CAA00400C45758 /* Main.storyboard */; };
+		76E8293C28CAA00400C45758 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8293B28CAA00400C45758 /* TodayViewController.swift */; };
 		76E8294128CAA00600C45758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E8294028CAA00600C45758 /* Assets.xcassets */; };
 		76E8294428CAA00600C45758 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E8294228CAA00600C45758 /* LaunchScreen.storyboard */; };
 		76E8294F28CAA00700C45758 /* Habit_CrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8294E28CAA00700C45758 /* Habit_CrackerTests.swift */; };
 		76E8295928CAA00700C45758 /* Habit_CrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8295828CAA00700C45758 /* Habit_CrackerUITests.swift */; };
 		76E8295B28CAA00700C45758 /* Habit_CrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8295A28CAA00700C45758 /* Habit_CrackerUITestsLaunchTests.swift */; };
+		76E8296B28CBA6C200C45758 /* ManageHabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8296A28CBA6C200C45758 /* ManageHabitsViewController.swift */; };
+		76E8297028CD30BD00C45758 /* CreateHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8296F28CD30BD00C45758 /* CreateHabitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76374EAA2903D2D30003828F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		76374EAC290469120003828F /* DaysOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysOfWeek.swift; sourceTree = "<group>"; };
+		764047F928D3E67C00A5A0F9 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
+		764047FF28D4F87000A5A0F9 /* HabitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTableViewCell.swift; sourceTree = "<group>"; };
+		7640480128D8118600A5A0F9 /* DaySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySelectionView.swift; sourceTree = "<group>"; };
+		76640AFA28EF303F006B770A /* EditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitViewController.swift; sourceTree = "<group>"; };
+		76640AFC28EF3189006B770A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		76E8293428CAA00400C45758 /* Habit Cracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Cracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E8293728CAA00400C45758 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E8293928CAA00400C45758 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		76E8293B28CAA00400C45758 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		76E8293E28CAA00400C45758 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		76E8293B28CAA00400C45758 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		76E8294028CAA00600C45758 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76E8294328CAA00600C45758 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76E8294528CAA00600C45758 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +63,8 @@
 		76E8295428CAA00700C45758 /* Habit CrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit CrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E8295828CAA00700C45758 /* Habit_CrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_CrackerUITests.swift; sourceTree = "<group>"; };
 		76E8295A28CAA00700C45758 /* Habit_CrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_CrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		76E8296A28CBA6C200C45758 /* ManageHabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageHabitsViewController.swift; sourceTree = "<group>"; };
+		76E8296F28CD30BD00C45758 /* CreateHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +92,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		764047F828D3E62400A5A0F9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				764047F928D3E67C00A5A0F9 /* Habit.swift */,
+				76374EAC290469120003828F /* DaysOfWeek.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		764047FB28D4333000A5A0F9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				76640AFC28EF3189006B770A /* BaseViewController.swift */,
+				76E8293B28CAA00400C45758 /* TodayViewController.swift */,
+				76E8296A28CBA6C200C45758 /* ManageHabitsViewController.swift */,
+				76E8296F28CD30BD00C45758 /* CreateHabitViewController.swift */,
+				76640AFA28EF303F006B770A /* EditHabitViewController.swift */,
+				76374EAA2903D2D30003828F /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		764047FE28D4F84500A5A0F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				764047FF28D4F87000A5A0F9 /* HabitTableViewCell.swift */,
+				7640480128D8118600A5A0F9 /* DaySelectionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		76E8292B28CAA00400C45758 = {
 			isa = PBXGroup;
 			children = (
@@ -99,10 +146,11 @@
 		76E8293628CAA00400C45758 /* Habit Cracker */ = {
 			isa = PBXGroup;
 			children = (
+				764047FE28D4F84500A5A0F9 /* Views */,
+				764047FB28D4333000A5A0F9 /* ViewControllers */,
+				764047F828D3E62400A5A0F9 /* Models */,
 				76E8293728CAA00400C45758 /* AppDelegate.swift */,
 				76E8293928CAA00400C45758 /* SceneDelegate.swift */,
-				76E8293B28CAA00400C45758 /* ViewController.swift */,
-				76E8293D28CAA00400C45758 /* Main.storyboard */,
 				76E8294028CAA00600C45758 /* Assets.xcassets */,
 				76E8294228CAA00600C45758 /* LaunchScreen.storyboard */,
 				76E8294528CAA00600C45758 /* Info.plist */,
@@ -233,7 +281,6 @@
 			files = (
 				76E8294428CAA00600C45758 /* LaunchScreen.storyboard in Resources */,
 				76E8294128CAA00600C45758 /* Assets.xcassets in Resources */,
-				76E8293F28CAA00400C45758 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +305,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76E8293C28CAA00400C45758 /* ViewController.swift in Sources */,
+				7640480228D8118600A5A0F9 /* DaySelectionView.swift in Sources */,
+				76374EAD290469120003828F /* DaysOfWeek.swift in Sources */,
+				764047FA28D3E67C00A5A0F9 /* Habit.swift in Sources */,
+				76374EAB2903D2D30003828F /* SettingsViewController.swift in Sources */,
+				76E8296B28CBA6C200C45758 /* ManageHabitsViewController.swift in Sources */,
+				76E8293C28CAA00400C45758 /* TodayViewController.swift in Sources */,
 				76E8293828CAA00400C45758 /* AppDelegate.swift in Sources */,
+				76640AFD28EF3189006B770A /* BaseViewController.swift in Sources */,
+				76E8297028CD30BD00C45758 /* CreateHabitViewController.swift in Sources */,
+				76640AFB28EF303F006B770A /* EditHabitViewController.swift in Sources */,
+				7640480028D4F87000A5A0F9 /* HabitTableViewCell.swift in Sources */,
 				76E8293A28CAA00400C45758 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,14 +353,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		76E8293D28CAA00400C45758 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				76E8293E28CAA00400C45758 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		76E8294228CAA00600C45758 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,7 +490,6 @@
 				INFOPLIST_FILE = "Habit Cracker/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +517,6 @@
 				INFOPLIST_FILE = "Habit Cracker/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
