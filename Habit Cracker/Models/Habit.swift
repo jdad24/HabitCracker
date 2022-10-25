@@ -12,7 +12,7 @@ class Habit: Codable {
     var showReminder: Bool = false
     var startDate = Date()
     var daysElapsed = Int()
-    var trackedDays = DaysOfWeek()
+    var trackedDays = TrackedDays()
     
     init() {
         Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { timer in
@@ -41,7 +41,7 @@ class Habit: Codable {
         guard let daysElapsed = Calendar.current.dateComponents([.day], from: startDate, to: Date()).day else {
             return 
         }
-        print("Days: ", daysElapsed)
+//        print("Days: ", daysElapsed)
         
         self.daysElapsed = daysElapsed
     }

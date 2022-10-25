@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DaysOfWeek: Codable {
+struct TrackedDays: Codable {
     var isSunday = false
     var isMonday = false
     var isTuesday = false

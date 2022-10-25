@@ -9,17 +9,39 @@ import UIKit
 
 class DaySelectionView: UIView {
     
-    var daysOfWeek = DaysOfWeek()
+    var trackedDays = TrackedDays()
+    
+    var sundayButton = UIButton()
+    var mondayButton = UIButton()
+    var tuesdayButton = UIButton()
+    var wednesdayButton = UIButton()
+    var thursdayButton = UIButton()
+    var fridayButton = UIButton()
+    var saturdayButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         createSubViews()
     }
     
-    init(daysofWeek: DaysOfWeek) {
+    init(trackedDays: TrackedDays) {
         super.init(frame: .zero)
         createSubViews()
-        self.daysOfWeek = daysofWeek
+        
+        self.trackedDays = trackedDays
+        
+        isUserInteractionEnabled = false
+        showTrackedDays()
+    }
+    
+    private func showTrackedDays() {
+        sundayButton.isSelected = trackedDays.isSunday ? true : false
+        mondayButton.isSelected = trackedDays.isMonday ? true : false
+        tuesdayButton.isSelected = trackedDays.isTuesday ? true : false
+        wednesdayButton.isSelected = trackedDays.isWednesday ? true : false
+        thursdayButton.isSelected = trackedDays.isThursday ? true : false
+        fridayButton.isSelected = trackedDays.isFriday ? true : false
+        saturdayButton.isSelected = trackedDays.isSaturday ? true : false
     }
     
     
@@ -39,58 +61,58 @@ class DaySelectionView: UIView {
         let saturdaySymbol = UIImage(systemName: "s.circle")
         let saturdaySymbolFill = UIImage(systemName: "s.circle.fill")
         
-        let sundayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
+        sundayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
             let button = action.sender as! UIButton
             button.isSelected = !button.isSelected
-            self.daysOfWeek.isSunday = !self.daysOfWeek.isSunday
+            self.trackedDays.isSunday = !self.trackedDays.isSunday
         })
         sundayButton.setImage(sundaySymbol, for: .normal)
         sundayButton.setImage(sundaySymbolFill, for: .selected)
 
-        let mondayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
+        mondayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
             let button = action.sender as! UIButton
             button.isSelected = !button.isSelected
-            self.daysOfWeek.isMonday = !self.daysOfWeek.isMonday
+            self.trackedDays.isMonday = !self.trackedDays.isMonday
         })
         mondayButton.setImage(mondaySymbol, for: .normal)
         mondayButton.setImage(mondaySymbolFill, for: .selected)
         
-        let tuesdayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
+        tuesdayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
             let button = action.sender as! UIButton
             button.isSelected = !button.isSelected
-            self.daysOfWeek.isTuesday = !self.daysOfWeek.isTuesday
+            self.trackedDays.isTuesday = !self.trackedDays.isTuesday
         })
         tuesdayButton.setImage(tuesdaySymbol, for: .normal)
         tuesdayButton.setImage(tuesdaySymbolFill, for: .selected)
         
-        let wednesdayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
+        wednesdayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
             let button = action.sender as! UIButton
             button.isSelected = !button.isSelected
-            self.daysOfWeek.isWednesday = !self.daysOfWeek.isWednesday
+            self.trackedDays.isWednesday = !self.trackedDays.isWednesday
         })
         wednesdayButton.setImage(wednesdaySymbol, for: .normal)
         wednesdayButton.setImage(wednesdaySymbolFill, for: .selected)
         
-        let thursdayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
+        thursdayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
             let button = action.sender as! UIButton
             button.isSelected = !button.isSelected
-            self.daysOfWeek.isThursday = !self.daysOfWeek.isThursday
+            self.trackedDays.isThursday = !self.trackedDays.isThursday
         })
         thursdayButton.setImage(thursdaySymbol, for: .normal)
         thursdayButton.setImage(thursdaySymbolFill, for: .selected)
         
-        let fridayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
+        fridayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
             let button = action.sender as! UIButton
             button.isSelected = !button.isSelected
-            self.daysOfWeek.isFriday = !self.daysOfWeek.isFriday
+            self.trackedDays.isFriday = !self.trackedDays.isFriday
         })
         fridayButton.setImage(fridaySymbol, for: .normal)
         fridayButton.setImage(fridaySymbolFill, for: .selected)
         
-        let saturdayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
+        saturdayButton = UIButton(type: .custom, primaryAction: UIAction() {action in
             let button = action.sender as! UIButton
             button.isSelected = !button.isSelected
-            self.daysOfWeek.isSaturday = !self.daysOfWeek.isSaturday
+            self.trackedDays.isSaturday = !self.trackedDays.isSaturday
         })
         saturdayButton.setImage(saturdaySymbol, for: .normal)
         saturdayButton.setImage(saturdaySymbolFill, for: .selected)

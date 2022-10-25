@@ -73,14 +73,15 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = HabitTableViewCell(style: .subtitle, reuseIdentifier: "HabitCell")
+        let habit = habitList[indexPath.section]
+        let cell = HabitTableViewCell(style: .subtitle, reuseIdentifier: "HabitCell", habit: habit)
         
-        habitList[indexPath.section].calculateDaysElapsed()
-        
-        cell.textLabel?.text = habitList[indexPath.section].habitName
+        habit.calculateDaysElapsed()
+
+        cell.textLabel?.text = habit.habitName
         cell.detailTextLabel?.text = """
-Days Cracked: \(habitList[indexPath.section].daysElapsed)
-Set Reminder? \(habitList[indexPath.section].showReminder ? "Yes" : "No")
+Days Cracked: \(habit.daysElapsed)
+Set Reminder? \(habit.showReminder ? "Yes" : "No")
 """
         
         return cell

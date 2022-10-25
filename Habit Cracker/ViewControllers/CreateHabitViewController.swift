@@ -54,7 +54,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
             }
             
             self.habit.startDate = Date()
-            self.habit.trackedDays = self.daySelectionView.daysOfWeek
+            self.habit.trackedDays = self.daySelectionView.trackedDays
             Habit.saveHabit(self.habit)
             self.navigationController?.popViewController(animated: true)
         })
