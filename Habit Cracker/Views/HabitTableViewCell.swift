@@ -17,7 +17,7 @@ class HabitTableViewCell: UITableViewCell {
         trackedDaysLabel.textAlignment = .center
         
         self.layer.borderColor = UIColor(displayP3Red: 100/255, green: 45/255, blue: 175/255, alpha: 1.0).cgColor
-        self.layer.borderWidth = 1
+        self.layer.borderWidth = 3
         self.layer.cornerRadius = 0.25 * self.frame.width
         self.clipsToBounds = true
         

@@ -59,24 +59,25 @@ class Habit: Codable {
             
                 let encodedHabitList = habitList.encode()
                 try encodedHabitList.write(to: url.appendingPathComponent(fileName))
-            } else {
+                }
+            } catch {
                 habitList.append(habit)
                 let encodedHabitList = habitList.encode()
-                try encodedHabitList.write(to: url.appendingPathComponent(fileName))
-            }
-            
-            } catch {
-                print("ERROR: ", error)
-                return
+                
+                do {
+                    try encodedHabitList.write(to: url.appendingPathComponent(fileName))
+                } catch {
+                    print("Write error")
+                }
         }
         
     }
     
     static func readHabitFile() -> [Habit] {
+        guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
+        let fileName = "HabitList.txt"
+        
         do {
-            guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
-            let fileName = "HabitList.txt"
-            
             let data = try Data(contentsOf: url.appendingPathComponent(fileName))
             
             guard let decodedHabit = Habit.decode(data: data) else {return []}
@@ -84,7 +85,7 @@ class Habit: Codable {
             return decodedHabit
                   
         } catch {
-            print(error)
+            print("READ ERROR", error)
             return []
         }
         

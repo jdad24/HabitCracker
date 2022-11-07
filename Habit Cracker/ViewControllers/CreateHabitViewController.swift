@@ -31,7 +31,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        enableConstraints()
+        setConstraints()
     }
     
     func setup() {
@@ -81,7 +81,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         habit.showReminder = reminderSwitch.isOn
     }
     
-    func enableConstraints() {
+    func setConstraints() {
         habitNameLabel.translatesAutoresizingMaskIntoConstraints = false
         habitNameLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
         habitNameLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true

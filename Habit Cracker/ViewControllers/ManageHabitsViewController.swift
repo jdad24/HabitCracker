@@ -30,7 +30,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     override func viewDidLayoutSubviews() {
-        enableConstraints()
+        setConstraints()
     }
     
     func setup() {
@@ -46,7 +46,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: createHabitAction)
     }
     
-    func enableConstraints() {
+    func setConstraints() {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         table.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
