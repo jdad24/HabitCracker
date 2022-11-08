@@ -72,6 +72,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         return 1
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let habit = habitList[indexPath.section]
         let cell = HabitTableViewCell(style: .subtitle, reuseIdentifier: "HabitCell", habit: habit)
@@ -116,11 +117,11 @@ Set Reminder? \(habit.showReminder ? "Yes" : "No")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return table.frame.size.height/4
+        return table.frame.size.height/6
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        habitList[indexPath.section].calculateDaysElapsed()
+        self.navigationController?.pushViewController(EditHabitViewController(habit: self.habitList[indexPath.section]), animated: true)
     }
     
 

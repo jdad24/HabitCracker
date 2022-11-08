@@ -56,6 +56,9 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
             self.habit.startDate = Date()
             self.habit.trackedDays = self.daySelectionView.trackedDays
             Habit.saveHabit(self.habit)
+            
+            self.habit.showReminder ? HabitNotifications().scheduleLocal(habit: self.habit) : nil
+            
             self.navigationController?.popViewController(animated: true)
         })
         submitButton.setTitle("Create Habit", for: UIControl.State.normal)

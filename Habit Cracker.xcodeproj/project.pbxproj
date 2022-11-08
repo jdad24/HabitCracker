@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760238D8291AC08A00D22B43 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760238D7291AC08A00D22B43 /* StringUtils.swift */; };
 		76374EAB2903D2D30003828F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76374EAA2903D2D30003828F /* SettingsViewController.swift */; };
 		76374EAD290469120003828F /* TrackedDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76374EAC290469120003828F /* TrackedDays.swift */; };
 		764047FA28D3E67C00A5A0F9 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764047F928D3E67C00A5A0F9 /* Habit.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		760238D7291AC08A00D22B43 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		76374EAA2903D2D30003828F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		76374EAC290469120003828F /* TrackedDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedDays.swift; sourceTree = "<group>"; };
 		764047F928D3E67C00A5A0F9 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		760238D6291AC07000D22B43 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				760238D7291AC08A00D22B43 /* StringUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		764047F828D3E62400A5A0F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 		76E8293628CAA00400C45758 /* Habit Cracker */ = {
 			isa = PBXGroup;
 			children = (
+				760238D6291AC07000D22B43 /* Utils */,
 				764047FE28D4F84500A5A0F9 /* Views */,
 				764047FB28D4333000A5A0F9 /* ViewControllers */,
 				764047F828D3E62400A5A0F9 /* Models */,
@@ -314,6 +325,7 @@
 				76374EAB2903D2D30003828F /* SettingsViewController.swift in Sources */,
 				76E8296B28CBA6C200C45758 /* ManageHabitsViewController.swift in Sources */,
 				76E8293C28CAA00400C45758 /* TodayViewController.swift in Sources */,
+				760238D8291AC08A00D22B43 /* StringUtils.swift in Sources */,
 				76E8293828CAA00400C45758 /* AppDelegate.swift in Sources */,
 				76640AFD28EF3189006B770A /* BaseViewController.swift in Sources */,
 				76E8297028CD30BD00C45758 /* CreateHabitViewController.swift in Sources */,
