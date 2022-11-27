@@ -9,9 +9,10 @@ import Foundation
 import UserNotifications
 
 class HabitNotifications {
-    let center = UNUserNotificationCenter.current()
     
-    func registerLocal() {
+    static func registerLocal() {
+        let center = UNUserNotificationCenter.current()
+        
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
                 print("Notifications Authorized")
@@ -21,16 +22,18 @@ class HabitNotifications {
         }
     }
     
-    func scheduleLocal(habit: Habit) {
-        let trackedDaysMirror = Mirror(reflecting: habit.trackedDays)
+    static func scheduleLocal(habit: Habit) {
+        let center = UNUserNotificationCenter.current()
         
+        let trackedDaysMirror = Mirror(reflecting: habit.trackedDays)
         var dayCount = 0 //Sunday = 1, Monday = 2,... Saturday = 7
+        
+        var dateComponent = DateComponents()
+        dateComponent.calendar = Calendar.current
+        
         for child in trackedDaysMirror.children {
             dayCount += 1
             if(child.value as! Bool  == true) {
-                let day = child.label!.substring(from: 2, to: child.label!.count)
-                
-                var dateComponent = DateComponents()
                 dateComponent.hour = 6
                 dateComponent.weekday = dayCount
                 
@@ -40,12 +43,17 @@ class HabitNotifications {
                 content.body = "\(habit.habitName) - Another Day, Another Crack"
                 content.sound = UNNotificationSound.default
                 
-                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: calendarTrigger)
-                
+                let request = UNNotificationRequest(identifier: habit.notificationIdentifier, content: content, trigger: calendarTrigger)
                 center.add(request)
-                
             }
         }
+    }
+    
+    static func deleteLocal(habit: Habit) {
+        let center = UNUserNotificationCenter.current()
+        
+        center.removeDeliveredNotifications(withIdentifiers: [habit.notificationIdentifier])
+        center.removePendingNotificationRequests(withIdentifiers: [habit.notificationIdentifier])
     }
 }
 

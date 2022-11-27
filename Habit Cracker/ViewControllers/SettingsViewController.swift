@@ -24,14 +24,14 @@ class SettingsViewController: BaseViewController {
         view.addSubview(darkModeLabel)
         darkModeLabel.translatesAutoresizingMaskIntoConstraints = false
         darkModeLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
-        darkModeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        darkModeLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
         darkModeLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
         darkModeLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         
         view.addSubview(darkModeSwitch)
         darkModeSwitch.translatesAutoresizingMaskIntoConstraints = false
         darkModeSwitch.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 10).isActive = true
-        darkModeSwitch.topAnchor.constraint(equalTo: darkModeLabel.topAnchor, constant: 0).isActive = true
+        darkModeSwitch.centerYAnchor.constraint(equalTo: darkModeLabel.centerYAnchor, constant: 0).isActive = true
         darkModeSwitch.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2).isActive = true
         darkModeSwitch.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1).isActive = true
         // Do any additional setup after loading the view.

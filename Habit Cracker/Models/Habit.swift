@@ -13,6 +13,7 @@ class Habit: Codable {
     var startDate = Date()
     var daysElapsed = Int()
     var trackedDays = TrackedDays()
+    var notificationIdentifier: String = ""
     
     init() {
         Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { timer in
@@ -41,10 +42,10 @@ class Habit: Codable {
         guard let daysElapsed = Calendar.current.dateComponents([.day], from: startDate, to: Date()).day else {
             return 
         }
-//        print("Days: ", daysElapsed)
         
         self.daysElapsed = daysElapsed
     }
+    
     
     static func saveHabit(_ habit: Habit) {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
@@ -73,6 +74,25 @@ class Habit: Codable {
         
     }
     
+    static func updateHabit(_ habit: Habit, habitIndex: Int) {
+        guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileName = "HabitList.txt"
+        var habitList = [Habit]()
+
+        do {
+            let previous = try Data(contentsOf: url.appendingPathComponent(fileName))
+            if let previousDecoded = Habit.decode(data: previous){
+                habitList = previousDecoded
+                habitList[habitIndex] = habit
+                
+                let encodedHabitList = habitList.encode()
+                try encodedHabitList.write(to: url.appendingPathComponent(fileName))
+            }
+        } catch {
+            print("Error updating habit")
+        }
+    }
+    
     static func readHabitFile() -> [Habit] {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
         let fileName = "HabitList.txt"
@@ -80,7 +100,10 @@ class Habit: Codable {
         do {
             let data = try Data(contentsOf: url.appendingPathComponent(fileName))
             
-            guard let decodedHabit = Habit.decode(data: data) else {return []}
+            guard let decodedHabit = Habit.decode(data: data) else {
+                print("READ ERROR")
+                return []
+            }
             
             return decodedHabit
                   

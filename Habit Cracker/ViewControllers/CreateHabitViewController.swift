@@ -20,6 +20,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
     let reminderSwitch = UISwitch()
     
     var submitButton: UIButton!
+    let plusImage = UIImage(systemName: "plus")
     
 
     override func viewDidLoad() {
@@ -55,15 +56,21 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
             
             self.habit.startDate = Date()
             self.habit.trackedDays = self.daySelectionView.trackedDays
+            self.habit.notificationIdentifier = UUID().uuidString //Creates a UUID for each created habit
+            
             Habit.saveHabit(self.habit)
-            
-            self.habit.showReminder ? HabitNotifications().scheduleLocal(habit: self.habit) : nil
-            
+        
+            self.habit.showReminder ? HabitNotifications.scheduleLocal(habit: self.habit) : print("no schedule")
             self.navigationController?.popViewController(animated: true)
+            
+            
         })
-        submitButton.setTitle("Create Habit", for: UIControl.State.normal)
+//        submitButton.setTitle("Create Habit", for: UIControl.State.normal)
+        submitButton.setImage(plusImage, for: .normal)
         submitButton.setTitleColor(.white, for: UIControl.State.normal)
-        submitButton.backgroundColor = .blue
+        submitButton.backgroundColor = .clear
+        submitButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1.0)
+        submitButton.layer.borderWidth = 3
         
         reminderSwitch.addTarget(self, action: #selector(onReminderSwitchValueChange), for: .valueChanged)
        

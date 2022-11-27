@@ -26,6 +26,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         table.reloadData()
         
         navigationItem.title = "Manage Habits"
+        print("List: ", habitList)
         
     }
     
@@ -77,7 +78,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         let habit = habitList[indexPath.section]
         let cell = HabitTableViewCell(style: .subtitle, reuseIdentifier: "HabitCell", habit: habit)
         
-        habit.calculateDaysElapsed()
+        habit.calculateDaysElapsed() //Calculate number of days since habit tracked
 
         cell.textLabel?.text = habit.habitName
         cell.detailTextLabel?.text = """
@@ -93,6 +94,10 @@ Set Reminder? \(habit.showReminder ? "Yes" : "No")
         let fileName = "HabitList.txt"
         
         let action = UIContextualAction(style: .destructive, title: "Delete") { (actions, view, completionHander) in
+            let center = UNUserNotificationCenter.current()
+            center.removeDeliveredNotifications(withIdentifiers: [self.habitList[indexPath.section].notificationIdentifier])
+            center.removePendingNotificationRequests(withIdentifiers: [self.habitList[indexPath.section].notificationIdentifier])
+            
             self.habitList.remove(at: indexPath.section)
             let data = self.habitList.encode()
             do {
@@ -109,7 +114,7 @@ Set Reminder? \(habit.showReminder ? "Yes" : "No")
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHander) in
-            self.navigationController?.pushViewController(EditHabitViewController(habit: self.habitList[indexPath.section]), animated: true)
+            self.navigationController?.pushViewController(EditHabitViewController(habit: self.habitList[indexPath.section], habitIndex: indexPath.section), animated: true)
             completionHander(true)
         }
         
@@ -121,7 +126,7 @@ Set Reminder? \(habit.showReminder ? "Yes" : "No")
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(EditHabitViewController(habit: self.habitList[indexPath.section]), animated: true)
+        self.navigationController?.pushViewController(EditHabitViewController(habit: self.habitList[indexPath.section], habitIndex: indexPath.section), animated: true)
     }
     
 

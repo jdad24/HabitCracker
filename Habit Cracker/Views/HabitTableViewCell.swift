@@ -8,21 +8,21 @@
 import UIKit
 
 class HabitTableViewCell: UITableViewCell {
-    override var frame: CGRect {
-            get {
-                return super.frame
-            }
-            set (newFrame) {
-                var frame = newFrame
-                let newWidth = frame.width * 0.80 // get 80% width here
-                let space = (frame.width - newWidth) / 2
-                frame.size.width = newWidth
-                frame.origin.x += space
-
-                super.frame = frame
-
-            }
-        }
+//    override var frame: CGRect {
+//            get {
+//                return super.frame
+//            }
+//            set (newFrame) {
+//                var frame = newFrame
+//                let newWidth = frame.width * 0.80 // get 80% width here
+//                let space = (frame.width - newWidth) / 2
+//                frame.size.width = newWidth
+//                frame.origin.x += space
+//
+//                super.frame = frame
+//
+//            }
+//        }
     
     init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, habit: Habit) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,7 +34,7 @@ class HabitTableViewCell: UITableViewCell {
         
         self.layer.borderColor = UIColor(displayP3Red: 100/255, green: 45/255, blue: 175/255, alpha: 1.0).cgColor
         self.layer.borderWidth = 3
-        self.layer.cornerRadius = 0.1 * self.frame.width
+//        self.layer.cornerRadius = 0.1 * self.frame.width
         self.clipsToBounds = true
         
         textLabel?.numberOfLines = 0
@@ -52,16 +52,6 @@ class HabitTableViewCell: UITableViewCell {
         daySelectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         daySelectionView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2).isActive = true
         daySelectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-//        addSubview(trackedDaysLabel)
-//        trackedDaysLabel.translatesAutoresizingMaskIntoConstraints = false
-//        trackedDaysLabel.bottomAnchor.constraint(equalTo: daySelectionView.topAnchor, constant: 10).isActive = true
-//        trackedDaysLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-//        trackedDaysLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1).isActive = true
-//        trackedDaysLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        
-//        backgroundColor = UIColor(displayP3Red: 80/255, green: 80/255, blue: 80/255, alpha: 1.0)
         
     }
     

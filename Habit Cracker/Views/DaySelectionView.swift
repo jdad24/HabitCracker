@@ -117,30 +117,6 @@ class DaySelectionView: UIView {
         saturdayButton.setImage(saturdaySymbol, for: .normal)
         saturdayButton.setImage(saturdaySymbolFill, for: .selected)
         
-//        addSubview(sundayButton)
-//        addSubview(mondayButton)
-//        addSubview(tuesdayButton)
-//        addSubview(wednesdayButton)
-//        addSubview(thursdayButton)
-//        addSubview(fridayButton)
-//        addSubview(saturdayButton)
-        
-//        sundayButton.translatesAutoresizingMaskIntoConstraints = false
-//        mondayButton.translatesAutoresizingMaskIntoConstraints = false
-//        tuesdayButton.translatesAutoresizingMaskIntoConstraints = false
-//        wednesdayButton.translatesAutoresizingMaskIntoConstraints = false
-//        thursdayButton.translatesAutoresizingMaskIntoConstraints = false
-//        fridayButton.translatesAutoresizingMaskIntoConstraints = false
-//        saturdayButton.translatesAutoresizingMaskIntoConstraints = false
-        
-//        sundayButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
-//        mondayButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
-//        tuesdayButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
-//        wednesdayButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
-//        thursdayButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
-//        fridayButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
-//        saturdayButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        
         let horizontalStackView = UIStackView()
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.axis = .horizontal
@@ -159,14 +135,6 @@ class DaySelectionView: UIView {
         horizontalStackView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor).isActive = true
         horizontalStackView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor).isActive = true
         horizontalStackView.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor).isActive = true
-        
-//        sundayButton.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-//        mondayButton.leftAnchor.constraint(equalTo: sundayButton.rightAnchor, constant: 10).isActive = true
-//        tuesdayButton.leftAnchor.constraint(equalTo: mondayButton.rightAnchor, constant: 10).isActive = true
-//        wednesdayButton.leftAnchor.constraint(equalTo: tuesdayButton.rightAnchor, constant: 10).isActive = true
-//        thursdayButton.leftAnchor.constraint(equalTo: wednesdayButton.rightAnchor, constant: 10).isActive = true
-//        fridayButton.leftAnchor.constraint(equalTo: thursdayButton.rightAnchor, constant: 10).isActive = true
-//        saturdayButton.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
