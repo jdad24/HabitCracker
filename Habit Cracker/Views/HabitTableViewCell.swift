@@ -27,14 +27,18 @@ class HabitTableViewCell: UITableViewCell {
     init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, habit: Habit) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        textLabel?.textColor = .white
+        detailTextLabel?.textColor = .white
+        
         let daySelectionView = DaySelectionView(trackedDays: habit.trackedDays)
         let trackedDaysLabel = UILabel()
         trackedDaysLabel.text = "Tracked Days"
         trackedDaysLabel.textAlignment = .center
         
-        self.layer.borderColor = UIColor(displayP3Red: 100/255, green: 45/255, blue: 175/255, alpha: 1.0).cgColor
-        self.layer.borderWidth = 3
-//        self.layer.cornerRadius = 0.1 * self.frame.width
+//        self.layer.borderColor = UIColor(displayP3Red: 100/255, green: 45/255, blue: 175/255, alpha: 1.0).cgColor
+//        self.layer.borderWidth = 3
+        self.layer.cornerRadius = 0.1 * self.frame.width
         self.clipsToBounds = true
         
         textLabel?.numberOfLines = 0

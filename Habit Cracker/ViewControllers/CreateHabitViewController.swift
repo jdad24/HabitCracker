@@ -44,6 +44,8 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         
         habitNameTextTield.placeholder = "Enter your habit"
         habitNameTextTield.textAlignment = .right
+        habitNameTextTield.textColor = .white
+        habitNameTextTield.attributedPlaceholder = NSAttributedString(string: habitNameTextTield.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)])
         
         submitButton = UIButton(primaryAction: UIAction() {_ in
             if self.habit.habitName.isEmpty {

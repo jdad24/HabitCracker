@@ -40,6 +40,8 @@ class EditHabitViewController: BaseViewController {
     }
     
     func setup() {
+        habitNameTextField.textColor = .white
+        
         editButton = UIButton(primaryAction: UIAction() { action in
             self.habit.habitName = self.habitNameTextField.text ?? ""
             self.habit.showReminder = self.reminderSwitch.isOn

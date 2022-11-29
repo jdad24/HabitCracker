@@ -8,7 +8,6 @@
 import UIKit
 
 class TodayViewController: BaseViewController {
-    let titleLabel = UILabel()
     let timeLabel = UILabel()
     
 //    var currentTime = Calendar.current.dateComponents([.month, .day, .year, .hour, .minute], from: Date())
@@ -21,7 +20,7 @@ class TodayViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
 //        currentTime = Calendar.current.dateComponents([.month, .day, .year, .hour, .minute], from: Date())
-        
+        setup()
         
     }
     
@@ -30,8 +29,6 @@ class TodayViewController: BaseViewController {
     }
     
     func setup() {
-        titleLabel.text = "Today"
-        
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "EEEE \n MMMM dd, yyyy \n h:mm a"
         
@@ -43,7 +40,6 @@ class TodayViewController: BaseViewController {
         timeLabel.text = """
 \(date)
 """
-        view.addSubview(titleLabel)
         view.addSubview(timeLabel)
         
     }
@@ -59,9 +55,6 @@ class TodayViewController: BaseViewController {
         timeLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.6).isActive = true
         timeLabel.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2).isActive = true
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
     }
 
 

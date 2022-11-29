@@ -17,6 +17,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         // Do any additional setup after loading the view.
         table.delegate = self
         table.dataSource = self
+        table.backgroundColor = .black
         
         setup()
     }

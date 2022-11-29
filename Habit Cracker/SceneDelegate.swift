@@ -29,12 +29,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let manageHabitsNavigationController = UINavigationController(rootViewController: manageHabitsViewController)
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
         
-        tabBarController.viewControllers = [todayNavigationController, manageHabitsNavigationController, settingsNavigationController]
+        tabBarController.viewControllers = [todayNavigationController, manageHabitsNavigationController]
         tabBarController.selectedIndex = 0
         
         todayViewController.tabBarItem = UITabBarItem(title: "Today", image: UIImage(systemName: "house"), selectedImage: nil)
         manageHabitsViewController.tabBarItem = UITabBarItem(title: "Manage", image: UIImage(systemName: "highlighter"), selectedImage: nil)
-        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage: nil)
+//        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage: nil)
       
         window?.rootViewController = tabBarController
         
