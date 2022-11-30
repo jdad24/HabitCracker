@@ -24,12 +24,16 @@ class HabitTableViewCell: UITableViewCell {
         
         textLabel?.numberOfLines = 0
         detailTextLabel?.numberOfLines = 0
+        detailTextLabel?.font = UIFont.systemFont(ofSize: 20)
         
         textLabel?.translatesAutoresizingMaskIntoConstraints = false
         textLabel?.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         textLabel?.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         textLabel?.textAlignment = .center
         
+        detailTextLabel?.translatesAutoresizingMaskIntoConstraints = false
+        detailTextLabel?.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        detailTextLabel?.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
         
         addSubview(daySelectionView)
         daySelectionView.translatesAutoresizingMaskIntoConstraints = false

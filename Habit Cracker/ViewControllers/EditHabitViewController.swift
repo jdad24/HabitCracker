@@ -14,6 +14,9 @@ class EditHabitViewController: BaseViewController {
     let habitNameLabel = UILabel()
     let habitNameTextField = UITextField()
     
+    let daysElapsedLabel = UILabel()
+    let daysElapsedValueLabel = UILabel()
+    
     let reminderLabel = UILabel()
     let reminderSwitch = UISwitch()
     
@@ -33,7 +36,7 @@ class EditHabitViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Edit \(habit.habitName) Habit"
+        navigationItem.title = habit.habitName.capitalized
         
         setup()
         // Do any additional setup after loading the view.
@@ -53,6 +56,8 @@ class EditHabitViewController: BaseViewController {
         
         view.addSubview(habitNameLabel)
         view.addSubview(habitNameTextField)
+        view.addSubview(daysElapsedLabel)
+        view.addSubview(daysElapsedValueLabel)
         view.addSubview(reminderLabel)
         view.addSubview(reminderSwitch)
         view.addSubview(editButton)
@@ -62,15 +67,25 @@ class EditHabitViewController: BaseViewController {
         habitNameLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50).isActive = true
         habitNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         
-        habitNameTextField.text = habit.habitName
+        habitNameTextField.text = habit.habitName.capitalized
         habitNameTextField.translatesAutoresizingMaskIntoConstraints = false
         habitNameTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50).isActive = true
         habitNameTextField.topAnchor.constraint(equalTo: habitNameLabel.topAnchor).isActive = true
+        
+        daysElapsedLabel.text = "Days Cracked"
+        daysElapsedLabel.translatesAutoresizingMaskIntoConstraints = false
+        daysElapsedLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50).isActive = true
+        daysElapsedLabel.topAnchor.constraint(equalTo: habitNameTextField.bottomAnchor, constant: 50).isActive = true
+        
+        daysElapsedValueLabel.text = "\(habit.daysElapsed)"
+        daysElapsedValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        daysElapsedValueLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -50).isActive = true
+        daysElapsedValueLabel.topAnchor.constraint(equalTo: daysElapsedLabel.topAnchor).isActive = true
     
         reminderLabel.text = "Set reminder?"
         reminderLabel.translatesAutoresizingMaskIntoConstraints = false
         reminderLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 50).isActive = true
-        reminderLabel.topAnchor.constraint(equalTo: habitNameTextField.bottomAnchor, constant: 50).isActive = true
+        reminderLabel.topAnchor.constraint(equalTo: daysElapsedLabel.bottomAnchor, constant: 50).isActive = true
         
         reminderSwitch.isOn = habit.showReminder
         reminderSwitch.translatesAutoresizingMaskIntoConstraints = false

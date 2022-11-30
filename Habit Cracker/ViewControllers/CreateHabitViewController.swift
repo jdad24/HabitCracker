@@ -134,7 +134,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if let habitName = textField.text {
-            self.habit.habitName = habitName
+            self.habit.habitName = habitName.capitalized
         }
         
         return true
