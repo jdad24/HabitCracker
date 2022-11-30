@@ -27,8 +27,6 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         table.reloadData()
         
         navigationItem.title = "Manage Habits"
-        print("List: ", habitList)
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -39,13 +37,14 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         view.addSubview(table)
         
         table.isScrollEnabled = true
-//        table.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.8)
+        table.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         
         let createHabitAction = UIAction() { _ in
             self.navigationController?.pushViewController(CreateHabitViewController(), animated: true)
         }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: createHabitAction)
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
     func setConstraints() {
@@ -81,7 +80,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         
         habit.calculateDaysElapsed() //Calculate number of days since habit tracked
 
-        cell.textLabel?.text = habit.habitName
+        cell.textLabel?.text = habit.habitName.capitalized
         cell.detailTextLabel?.text = """
 Days Cracked: \(habit.daysElapsed)
 Set Reminder? \(habit.showReminder ? "Yes" : "No")

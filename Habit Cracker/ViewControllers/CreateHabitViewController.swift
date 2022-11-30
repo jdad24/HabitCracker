@@ -67,12 +67,12 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
             
             
         })
-//        submitButton.setTitle("Create Habit", for: UIControl.State.normal)
+
         submitButton.setImage(plusImage, for: .normal)
         submitButton.setTitleColor(.white, for: UIControl.State.normal)
         submitButton.backgroundColor = .clear
-        submitButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1.0)
-        submitButton.layer.borderWidth = 3
+//        submitButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1.0)
+//        submitButton.layer.borderWidth = 3
         
         reminderSwitch.addTarget(self, action: #selector(onReminderSwitchValueChange), for: .valueChanged)
        

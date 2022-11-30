@@ -11,7 +11,7 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         UILabel.appearance().textColor = .white
 //        UILabel.appearance().font = UIFont(name: "Arial", size: 30)
 //        UITextField.appearance().font = UIFont(name: "Arial", size: 30)

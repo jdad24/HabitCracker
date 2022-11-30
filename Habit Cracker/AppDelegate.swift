@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         HabitNotifications.registerLocal()
         
         let navbarAppearance = UINavigationBarAppearance()
-        navbarAppearance.backgroundColor = UIColor(displayP3Red: 100/255, green: 45/255, blue: 175/255, alpha: 1.0)
+        navbarAppearance.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.5, alpha: 1.0)
 //        navbarAppearance.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.7)
         UINavigationBar.appearance().standardAppearance = navbarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navbarAppearance
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
             let tabBarItemAppearance = UITabBarItemAppearance()
             
-            tabBarAppearance.backgroundColor = UIColor(displayP3Red: 100/255, green: 45/255, blue: 175/255, alpha: 1.0)
+            tabBarAppearance.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.5, alpha: 1.0)
 //            tabBarAppearance.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.8)
             tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             tabBarItemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
