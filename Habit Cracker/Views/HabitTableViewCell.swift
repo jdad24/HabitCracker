@@ -44,15 +44,15 @@ class HabitTableViewCell: UITableViewCell {
     }
     
     override func draw(_ rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        context?.setLineWidth(3.0)
-        context?.setStrokeColor(UIColor.black.cgColor)
-        context?.move(to: CGPoint(x: 10, y: 90))
-        context?.addLine(to: CGPoint(x: 10, y: 72))
-        context?.addLine (to: CGPoint(x: 380, y: 72))
-        context?.addLine(to: CGPoint(x: 380, y: 90))
-        context?.strokePath()
-        print("Draw")
+//        let context = UIGraphicsGetCurrentContext()
+//        context?.setLineWidth(3.0)
+//        context?.setStrokeColor(UIColor.black.cgColor)
+//        context?.move(to: CGPoint(x: 10, y: 90))
+//        context?.addLine(to: CGPoint(x: 10, y: 72))
+//        context?.addLine (to: CGPoint(x: 380, y: 72))
+//        context?.addLine(to: CGPoint(x: 380, y: 90))
+//        context?.strokePath()
+//        print("Draw")
     }
     
     override func setNeedsLayout() {
