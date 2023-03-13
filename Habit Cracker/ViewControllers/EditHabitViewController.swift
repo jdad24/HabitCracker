@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditHabitViewController: BaseViewController {
+class EditHabitViewController: BaseViewController, UITextFieldDelegate {
     var habit = Habit()
     var habitIndex = Int()
     
@@ -36,13 +36,16 @@ class EditHabitViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = habit.habitName.capitalized
         
         setup()
         // Do any additional setup after loading the view.
     }
     
     func setup() {
+        navigationItem.title = habit.habitName.capitalized
+        
+        habitNameTextField.delegate = self
+        habitNameTextField.returnKeyType = .done
         habitNameTextField.textColor = .white
         
         editButton = UIButton(primaryAction: UIAction() { action in
@@ -101,6 +104,15 @@ class EditHabitViewController: BaseViewController {
         editButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let habitName = textField.text {
+            self.habit.habitName = habitName.capitalized
+        }
+        
+        return true
     }
     
 

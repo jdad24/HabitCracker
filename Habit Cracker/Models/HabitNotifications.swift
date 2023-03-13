@@ -26,16 +26,16 @@ class HabitNotifications {
         let center = UNUserNotificationCenter.current()
         
         let trackedDaysMirror = Mirror(reflecting: habit.trackedDays)
-        var dayCount = 0 //Sunday = 1, Monday = 2,... Saturday = 7
+        var dayInt = 0 //Sunday = 1, Monday = 2,... Saturday = 7
         
         var dateComponent = DateComponents()
         dateComponent.calendar = Calendar.current
         
         for child in trackedDaysMirror.children {
-            dayCount += 1
+            dayInt += 1
             if(child.value as! Bool  == true) {
                 dateComponent.hour = 6
-                dateComponent.weekday = dayCount
+                dateComponent.weekday = dayInt
                 
                 let calendarTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
                 let content = UNMutableNotificationContent()
