@@ -90,6 +90,9 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         view.addSubview(reminderLabel)
         view.addSubview(reminderSwitch)
         
+        view.addSubview(showDaysElapsedLabel)
+        view.addSubview(showDaysElapsedSwitch)
+        
         view.addSubview(submitButton)
     }
     

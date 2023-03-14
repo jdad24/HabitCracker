@@ -23,17 +23,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let todayViewController = TodayViewController()
         let manageHabitsViewController = ManageHabitsViewController()
         let settingsViewController = SettingsViewController()
+        let journalViewController = JournalViewController()
         
         let tabBarController = UITabBarController()
         let todayNavigationController = UINavigationController(rootViewController: todayViewController)
         let manageHabitsNavigationController = UINavigationController(rootViewController: manageHabitsViewController)
+        let journalNavigationViewController = UINavigationController(rootViewController: journalViewController)
         let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
         
-        tabBarController.viewControllers = [todayNavigationController, manageHabitsNavigationController]
+        tabBarController.viewControllers = [todayNavigationController, manageHabitsNavigationController, journalNavigationViewController]
         tabBarController.selectedIndex = 0
         
-        todayViewController.tabBarItem = UITabBarItem(title: "Today", image: UIImage(systemName: "house"), selectedImage: nil)
-        manageHabitsViewController.tabBarItem = UITabBarItem(title: "Manage", image: UIImage(systemName: "highlighter"), selectedImage: nil)
+        todayNavigationController.tabBarItem = UITabBarItem(title: "Today", image: UIImage(systemName: "house"), selectedImage: nil)
+        manageHabitsNavigationController.tabBarItem = UITabBarItem(title: "Manage", image: UIImage(systemName: "highlighter"), selectedImage: nil)
+        journalNavigationViewController.tabBarItem = UITabBarItem(title: "Journal", image: UIImage(systemName: "square"), selectedImage: nil)
 //        settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage: nil)
       
         window?.rootViewController = tabBarController
