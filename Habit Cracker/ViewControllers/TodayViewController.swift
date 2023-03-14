@@ -7,9 +7,13 @@
 
 import UIKit
 
-class TodayViewController: BaseViewController {
+class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
     let timeLabel = UILabel()
     var habitList: [Habit] = []
+    
+//    var animator: UIDynamicAnimator!
+//    var gravity: UIGravityBehavior!
+//    var collision: UICollisionBehavior!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,9 +21,23 @@ class TodayViewController: BaseViewController {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+       navigationItem.title = "Today"
+        
+//        animator = UIDynamicAnimator(referenceView: view)
+//        gravity = UIGravityBehavior(items: [])
+//        collision = UICollisionBehavior(items: [])
+//        collision.translatesReferenceBoundsIntoBoundary = true
+//        animator.addBehavior(gravity)
+//        animator.addBehavior(collision)
+//
+//        collision.collisionDelegate = self
+    }
+    
     override func viewDidLayoutSubviews() {
         enableConstraints()
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         createBubbleViews()
@@ -47,9 +65,10 @@ class TodayViewController: BaseViewController {
     func createBubbleViews() {
         let weekday = Calendar.current.component(.weekday, from: Date())
         habitList = Habit.readHabitFile()
-        print(UIScreen.main.bounds)
         
-        for habit in habitList {
+        let bubblecolors: [UIColor] = [.purple, .magenta]
+        
+        for (index, habit) in habitList.enumerated() {
             let trackedDaysMirror = Mirror(reflecting: habit.trackedDays)
             var dayInt = 0
             var dateComponent = DateComponents()
@@ -59,11 +78,22 @@ class TodayViewController: BaseViewController {
                 dayInt += 1
 
                 if(child.value as! Bool == true && dayInt == weekday ) {
-                    let bubbleView = BubbleView(backgroundColor: .purple)
+                    let color = bubblecolors[Int.random(in: 0..<2)]
+                    
+                    let bubbleView = BubbleView(backgroundColor: color, habit: habit, animate: true, index: index)
                     bubbleView.layer.zPosition = -1
-                    bubbleView.layer.position.x = Double.random(in: 50..<(view.frame.width-50.0))
-                    bubbleView.layer.position.y = Double.random(in: 50..<(view.frame.height-50.0))
+                    bubbleView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                    bubbleView.layer.position.x = Double.random(in: (bubbleView.frame.size.width*0.75)..<(view.frame.width-bubbleView.frame.size.width*0.75))
+                    bubbleView.layer.position.y = Double.random(in: (bubbleView.frame.size.height*0.75)..<(view.frame.height-bubbleView.frame.size.height*0.75))
                     view.addSubview(bubbleView)
+                    
+//                    let bubbleBehavior = UIDynamicItemBehavior(items: [bubbleView])
+//                    bubbleBehavior.elasticity = 1.0
+//                    bubbleBehavior.allowsRotation = false
+//                    animator.addBehavior(bubbleBehavior)
+//
+//                    gravity.addItem(bubbleView)
+//                    collision.addItem(bubbleView)
                 }
 
             }
@@ -78,18 +108,18 @@ class TodayViewController: BaseViewController {
             })
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       navigationItem.title = "Today"
-    }
-    
     func enableConstraints() {
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        timeLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
         timeLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.6).isActive = true
         timeLabel.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2).isActive = true
         
     }
+    
+//    func collisionBehavior(_ behavior: UICollisionBehavior, beganContactFor item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, at p: CGPoint) {
+//        print("Boundary contact with: \(identifier)")
+//    }
 
 
 }

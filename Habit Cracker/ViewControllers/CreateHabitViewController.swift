@@ -16,6 +16,9 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
     let daySelectionLabel = UILabel()
     let daySelectionView = DaySelectionView(frame: .zero)
     
+    let showDaysElapsedLabel = UILabel()
+    let showDaysElapsedSwitch = UISwitch()
+    
     let reminderLabel = UILabel()
     let reminderSwitch = UISwitch()
     
@@ -41,6 +44,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         habitNameLabel.text = "Habit"
         daySelectionLabel.text = "Select Days to Track"
         reminderLabel.text = "Set Reminder?"
+        showDaysElapsedLabel.text = "Show Days Elapsed"
         
         habitNameTextTield.placeholder = "Enter your habit"
         habitNameTextTield.textAlignment = .right
@@ -62,7 +66,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
             
             Habit.saveHabit(self.habit)
         
-            self.habit.showReminder ? HabitNotifications.scheduleLocal(habit: self.habit) : print("no schedule")
+            self.habit.showReminder ? HabitNotifications.scheduleLocal(habit: self.habit) : print("No Schedule")
             self.navigationController?.popViewController(animated: true)
             
             
@@ -122,6 +126,14 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         reminderSwitch.translatesAutoresizingMaskIntoConstraints = false
         reminderSwitch.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
         reminderSwitch.centerYAnchor.constraint(equalTo: reminderLabel.centerYAnchor).isActive = true
+        
+        showDaysElapsedLabel.translatesAutoresizingMaskIntoConstraints = false
+        showDaysElapsedLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        showDaysElapsedLabel.topAnchor.constraint(equalTo: reminderLabel.bottomAnchor, constant: 30).isActive = true
+        
+        showDaysElapsedSwitch.translatesAutoresizingMaskIntoConstraints = false
+        showDaysElapsedSwitch.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+        showDaysElapsedSwitch.centerYAnchor.constraint(equalTo: showDaysElapsedLabel.centerYAnchor).isActive = true
         
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         submitButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
