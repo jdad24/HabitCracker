@@ -7,7 +7,7 @@
 
 import UIKit
 
-class JournalViewController: BaseViewController, UICalendarViewDelegate {
+class JournalViewController: BaseViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,10 +15,11 @@ class JournalViewController: BaseViewController, UICalendarViewDelegate {
         navigationItem.title = "Journal"
         
         if #available(iOS 16.0, *) {
-            let calendarView = UICalendarView()
+            let calendarView = CalendarView()
             calendarView.delegate = self
-            calendarView.backgroundColor = .white
-            calendarView.fontDesign = .rounded
+            let dateSelection = UICalendarSelectionSingleDate(delegate: self)
+            calendarView.selectionBehavior = dateSelection
+            
             view.addSubview(calendarView)
             
             calendarView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +32,18 @@ class JournalViewController: BaseViewController, UICalendarViewDelegate {
         }
 
         // Do any additional setup after loading the view.
+    }
+    
+    @available(iOS 16.0, *)
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, canSelectDate dateComponents: DateComponents?) -> Bool {
+        // Return `true` to allow a date selection; a nil date clears the selection.
+        // Require a date selection by returning false if dateComponents is nil.
+        return dateComponents != nil
+    }
+    
+    @available(iOS 16.0, *)
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        
     }
 
     /*

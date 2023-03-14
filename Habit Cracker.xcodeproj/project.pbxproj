@@ -18,6 +18,7 @@
 		76640AFD28EF3189006B770A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76640AFC28EF3189006B770A /* BaseViewController.swift */; };
 		76A9D2CB2989E99400757044 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A9D2CA2989E99400757044 /* BubbleView.swift */; };
 		76D39A3A29C0F6010044BFCD /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D39A3929C0F6010044BFCD /* JournalViewController.swift */; };
+		76D39A3C29C10F970044BFCD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D39A3B29C10F970044BFCD /* CalendarView.swift */; };
 		76E8293828CAA00400C45758 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8293728CAA00400C45758 /* AppDelegate.swift */; };
 		76E8293A28CAA00400C45758 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8293928CAA00400C45758 /* SceneDelegate.swift */; };
 		76E8293C28CAA00400C45758 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E8293B28CAA00400C45758 /* TodayViewController.swift */; };
@@ -59,6 +60,7 @@
 		76640AFC28EF3189006B770A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		76A9D2CA2989E99400757044 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		76D39A3929C0F6010044BFCD /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
+		76D39A3B29C10F970044BFCD /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		76E8293428CAA00400C45758 /* Habit Cracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Cracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E8293728CAA00400C45758 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E8293928CAA00400C45758 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				764047FF28D4F87000A5A0F9 /* HabitTableViewCell.swift */,
 				7640480128D8118600A5A0F9 /* DaySelectionView.swift */,
 				76A9D2CA2989E99400757044 /* BubbleView.swift */,
+				76D39A3B29C10F970044BFCD /* CalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				76D39A3A29C0F6010044BFCD /* JournalViewController.swift in Sources */,
 				76A9D2CB2989E99400757044 /* BubbleView.swift in Sources */,
 				7640480228D8118600A5A0F9 /* DaySelectionView.swift in Sources */,
+				76D39A3C29C10F970044BFCD /* CalendarView.swift in Sources */,
 				76374EAD290469120003828F /* TrackedDays.swift in Sources */,
 				764047FA28D3E67C00A5A0F9 /* Habit.swift in Sources */,
 				76374EAB2903D2D30003828F /* SettingsViewController.swift in Sources */,
