@@ -40,7 +40,7 @@ class HabitNotifications {
                 let calendarTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
                 let content = UNMutableNotificationContent()
                 content.title = "Habit Cracker"
-                content.body = "\(habit.habitName) - Another Day, Another Crack"
+                content.body = "\(habit.habitName) - Another Day, Another Improvement"
                 content.sound = UNNotificationSound.default
                 
                 let request = UNNotificationRequest(identifier: habit.notificationIdentifier, content: content, trigger: calendarTrigger)

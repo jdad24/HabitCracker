@@ -81,7 +81,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         habit.calculateDaysElapsed() //Calculate number of days since habit tracked
 
         cell.textLabel?.text = habit.habitName.capitalized
-        cell.detailTextLabel?.text = "\(habit.daysElapsed) Days Cracked"
+        cell.detailTextLabel?.text = "\(habit.daysElapsed) Days Elapsed"
         
 //        cell.detailTextLabel?.text = """
 //Days Cracked: \(habit.daysElapsed)

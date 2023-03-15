@@ -15,6 +15,7 @@ class Habit: Codable {
     var showDaysElapsed: Bool = true
     var trackedDays = TrackedDays()
     var notificationIdentifier: String = ""
+    var reminderTimeComponents = DateComponents()
     
     init() {
         Timer.scheduledTimer(withTimeInterval: 3600, repeats: true) { timer in

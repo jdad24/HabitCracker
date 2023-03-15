@@ -22,6 +22,9 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
     let reminderLabel = UILabel()
     let reminderSwitch = UISwitch()
     
+    var setReminderTime: Bool = false
+    let reminderDatePicker = UIDatePicker()
+    
     var submitButton: UIButton!
     let plusImage = UIImage(systemName: "plus")
     
@@ -38,8 +41,29 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         setConstraints()
     }
     
+    func showReminderDatePicker() {
+        
+        reminderDatePicker.backgroundColor = .white
+        view.addSubview(reminderDatePicker)
+
+        reminderDatePicker.translatesAutoresizingMaskIntoConstraints = false
+        reminderDatePicker.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        reminderDatePicker.topAnchor.constraint(equalTo: reminderLabel.bottomAnchor, constant: 20).isActive = true
+    }
+    
+    func removeReminderDatePicker() {
+        view.subviews.forEach({
+            if($0.accessibilityIdentifier == "reminderDatePicker"){
+                $0.removeFromSuperview()
+            }
+        })
+    }
+    
     func setup() {
         navigationItem.title = "Create Habit"
+        
+        reminderDatePicker.accessibilityIdentifier = "reminderDatePicker"
+        reminderDatePicker.datePickerMode = UIDatePicker.Mode.time
     
         habitNameLabel.text = "Habit"
         daySelectionLabel.text = "Select Days to Track"
@@ -64,6 +88,10 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
             self.habit.trackedDays = self.daySelectionView.trackedDays
             self.habit.notificationIdentifier = UUID().uuidString //Creates a UUID for each created habit
             
+            let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: self.reminderDatePicker.date)
+            self.habit.reminderTimeComponents = timeComponents
+            print("TIME: ", timeComponents)
+            
             Habit.saveHabit(self.habit)
         
             self.habit.showReminder ? HabitNotifications.scheduleLocal(habit: self.habit) : print("No Schedule")
@@ -87,17 +115,21 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         view.addSubview(daySelectionLabel)
         view.addSubview(daySelectionView)
         
+        view.addSubview(showDaysElapsedLabel)
+        view.addSubview(showDaysElapsedSwitch)
+        
         view.addSubview(reminderLabel)
         view.addSubview(reminderSwitch)
         
-        view.addSubview(showDaysElapsedLabel)
-        view.addSubview(showDaysElapsedSwitch)
         
         view.addSubview(submitButton)
     }
     
     @objc func onReminderSwitchValueChange() {
         habit.showReminder = reminderSwitch.isOn
+        setReminderTime = reminderSwitch.isOn
+        
+        setReminderTime ? showReminderDatePicker(): removeReminderDatePicker()
     }
     
     func setConstraints() {
@@ -122,21 +154,21 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         daySelectionView.centerYAnchor.constraint(equalTo: daySelectionLabel.centerYAnchor).isActive = true
         daySelectionView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        reminderLabel.translatesAutoresizingMaskIntoConstraints = false
-        reminderLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        reminderLabel.topAnchor.constraint(equalTo: daySelectionLabel.bottomAnchor, constant: 30).isActive = true
-        
-        reminderSwitch.translatesAutoresizingMaskIntoConstraints = false
-        reminderSwitch.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
-        reminderSwitch.centerYAnchor.constraint(equalTo: reminderLabel.centerYAnchor).isActive = true
-        
         showDaysElapsedLabel.translatesAutoresizingMaskIntoConstraints = false
         showDaysElapsedLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        showDaysElapsedLabel.topAnchor.constraint(equalTo: reminderLabel.bottomAnchor, constant: 30).isActive = true
+        showDaysElapsedLabel.topAnchor.constraint(equalTo: daySelectionView.bottomAnchor, constant: 30).isActive = true
         
         showDaysElapsedSwitch.translatesAutoresizingMaskIntoConstraints = false
         showDaysElapsedSwitch.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
         showDaysElapsedSwitch.centerYAnchor.constraint(equalTo: showDaysElapsedLabel.centerYAnchor).isActive = true
+        
+        reminderLabel.translatesAutoresizingMaskIntoConstraints = false
+        reminderLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        reminderLabel.topAnchor.constraint(equalTo: showDaysElapsedLabel.bottomAnchor, constant: 30).isActive = true
+        
+        reminderSwitch.translatesAutoresizingMaskIntoConstraints = false
+        reminderSwitch.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+        reminderSwitch.centerYAnchor.constraint(equalTo: reminderLabel.centerYAnchor).isActive = true
         
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         submitButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
