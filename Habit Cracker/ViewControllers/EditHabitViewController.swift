@@ -15,7 +15,7 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
     let habitNameTextField = UITextField()
     
     let daySelectionLabel = UILabel()
-    let daySelectionView = DaySelectionView(frame: .zero)
+    var daySelectionView: DaySelectionView!
     
     let daysElapsedLabel = UILabel()
     let daysElapsedValueLabel = UILabel()
@@ -34,6 +34,8 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
         self.habit = habit
         self.habitIndex = habitIndex
         
+        daySelectionView = DaySelectionView(trackedDays: self.habit.trackedDays)
+        daySelectionView.isUserInteractionEnabled = true
     }
     
     required init?(coder: NSCoder) {
