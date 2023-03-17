@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let todayNavigationController = UINavigationController(rootViewController: todayViewController)
         let manageHabitsNavigationController = UINavigationController(rootViewController: manageHabitsViewController)
         let journalNavigationViewController = UINavigationController(rootViewController: journalViewController)
-        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
+//        let settingsNavigationController = UINavigationController(rootViewController: settingsViewController)
         
         tabBarController.viewControllers = [todayNavigationController, manageHabitsNavigationController, journalNavigationViewController]
         tabBarController.selectedIndex = 0

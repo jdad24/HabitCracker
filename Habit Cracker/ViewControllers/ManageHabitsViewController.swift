@@ -96,9 +96,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         let fileName = "HabitList.txt"
         
         let action = UIContextualAction(style: .destructive, title: "Delete") { (actions, view, completionHander) in
-            let center = UNUserNotificationCenter.current()
-            center.removeDeliveredNotifications(withIdentifiers: [self.habitList[indexPath.section].notificationIdentifier])
-            center.removePendingNotificationRequests(withIdentifiers: [self.habitList[indexPath.section].notificationIdentifier])
+            HabitNotifications.deleteLocal(habit: self.habitList[indexPath.section])
             
             self.habitList.remove(at: indexPath.section)
             let data = self.habitList.encode()

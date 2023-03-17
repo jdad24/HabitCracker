@@ -18,7 +18,7 @@ class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setup()
+//        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +35,7 @@ class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        enableConstraints()
+//        enableConstraints()
     }
     
     

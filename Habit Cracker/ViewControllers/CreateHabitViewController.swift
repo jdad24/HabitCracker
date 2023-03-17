@@ -89,8 +89,8 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
             self.habit.notificationIdentifier = UUID().uuidString //Creates a UUID for each created habit
             
             let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: self.reminderDatePicker.date)
-            self.habit.reminderTimeComponents = timeComponents
-            print("TIME: ", timeComponents)
+            self.habit.reminderHour = timeComponents.hour ?? 6
+            self.habit.reminderMinute = timeComponents.minute ?? 0
             
             Habit.saveHabit(self.habit)
         

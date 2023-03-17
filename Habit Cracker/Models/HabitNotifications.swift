@@ -28,13 +28,13 @@ class HabitNotifications {
         let trackedDaysMirror = Mirror(reflecting: habit.trackedDays)
         var dayInt = 0 //Sunday = 1, Monday = 2,... Saturday = 7
         
-        var dateComponent = DateComponents()
-        dateComponent.calendar = Calendar.current
-        
         for child in trackedDaysMirror.children {
+            var dateComponent = DateComponents()
+            dateComponent.calendar = Calendar.current
             dayInt += 1
             if(child.value as! Bool  == true) {
-                dateComponent.hour = 6
+                dateComponent.hour = habit.reminderHour
+                dateComponent.minute = habit.reminderMinute
                 dateComponent.weekday = dayInt
                 
                 let calendarTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
@@ -43,7 +43,9 @@ class HabitNotifications {
                 content.body = "\(habit.habitName) - Another Day, Another Improvement"
                 content.sound = UNNotificationSound.default
                 
-                let request = UNNotificationRequest(identifier: habit.notificationIdentifier, content: content, trigger: calendarTrigger)
+                let idString = habit.notificationIdentifier + String(dayInt)
+                
+                let request = UNNotificationRequest(identifier: idString, content: content, trigger: calendarTrigger)
                 center.add(request)
             }
         }
@@ -51,9 +53,21 @@ class HabitNotifications {
     
     static func deleteLocal(habit: Habit) {
         let center = UNUserNotificationCenter.current()
+        var identifiers = [String]()
         
-        center.removeDeliveredNotifications(withIdentifiers: [habit.notificationIdentifier])
-        center.removePendingNotificationRequests(withIdentifiers: [habit.notificationIdentifier])
+        let trackedDaysMirror = Mirror(reflecting: habit.trackedDays)
+        var dayInt = 0 //Sunday = 1, Monday = 2,... Saturday = 7
+        
+        for child in trackedDaysMirror.children {
+            dayInt += 1
+            if(child.value as! Bool == true) {
+                let idString = habit.notificationIdentifier + String(dayInt)
+                identifiers.append(idString)
+            }
+        }
+
+        center.removeDeliveredNotifications(withIdentifiers: identifiers)
+        center.removePendingNotificationRequests(withIdentifiers: identifiers)
     }
 }
 

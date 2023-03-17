@@ -131,10 +131,10 @@ class DaySelectionView: UIView {
         
         addSubview(horizontalStackView)
         
-        horizontalStackView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        horizontalStackView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        horizontalStackView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor).isActive = true
-        horizontalStackView.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor).isActive = true
+        horizontalStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        horizontalStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        horizontalStackView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        horizontalStackView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
