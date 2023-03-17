@@ -9,6 +9,7 @@ import UIKit
 
 @available(iOS 16.0, *)
 class CalendarView: UICalendarView {
+    var habitList: [Habit]!
     
     init() {
         super.init(frame: .zero)
