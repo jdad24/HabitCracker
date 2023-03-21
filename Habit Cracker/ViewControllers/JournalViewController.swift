@@ -6,79 +6,70 @@
 //
 
 import UIKit
+import CalendarKit
 
-class JournalViewController: BaseViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
+class JournalViewController: DayViewController {
     var habitList: [Habit]!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        habitList = Habit.readHabitFile()
-        
         navigationItem.title = "Journal"
+        //        habitList = Habit.readHabitFile()
+        //        dayView.timelinePagerView.isHidden = true
         
-        if #available(iOS 16.0, *) {
-            let calendarView = CalendarView()
-            calendarView.delegate = self
-            let dateSelection = UICalendarSelectionSingleDate(delegate: self)
-            calendarView.selectionBehavior = dateSelection
-            
-            view.addSubview(calendarView)
-            
-            calendarView.translatesAutoresizingMaskIntoConstraints = false
-            calendarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-            calendarView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-            calendarView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75).isActive = true
-            calendarView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.6).isActive = true
-        } else {
-            // Fallback on earlier versions
-        }
-
+        //        var style = CalendarStyle()
+        //        style.header.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        //        style.timeline.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        //        dayView.updateStyle(style)
+        
+        
         // Do any additional setup after loading the view.
     }
     
-    @available(iOS 16.0, *)
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        let weekday = Calendar.current.dateComponents([.weekday], from: dateComponents.date!).weekday
+    override func eventsForDate(_ date: Date) -> [EventDescriptor] {
+        let habitList = Habit.readHabitFile() // Get events (models) from the storage / API
+        print(date, Calendar.current.component(.weekday, from: date))
+        
+        var events = [Event]()
+        let endDate = Calendar.current.date(byAdding: .minute, value: 30, to: Date())
         
         for habit in habitList {
-            let trackedDaysMirror = Mirror(reflecting: habit.trackedDays)
-            var dayInt = 0 //Sunday = 1, Monday = 2,... Saturday = 7
+            // Create new EventView
+            let trackedDayMirror = Mirror(reflecting: habit.trackedDays)
+            var dayInt = 0
             
-            for child in trackedDaysMirror.children {
+            for day in trackedDayMirror.children {
                 dayInt += 1
-                
-                if(child.value as! Bool == true) {
-                    if(weekday == dayInt) {
-                        return UICalendarView.Decoration.default(color: .red, size: .large)
-                    }
+                if(dayInt == Calendar.current.component(.weekday, from: date) && day.value as! Bool == true) {
+                    let event = Event()
+                    event.dateInterval = DateInterval(start: habit.reminderDate, end: endDate!)
+                    
+                    let info = [habit.habitName, String(habit.daysElapsed)]
+                    event.text = info.reduce("", {$0 + $1 + "\n"})
+                    events.append(event)
                 }
             }
         }
-        
-        return UICalendarView.Decoration.default(color: .blue, size: .large)
+        return events
     }
     
-    @available(iOS 16.0, *)
-    func dateSelection(_ selection: UICalendarSelectionSingleDate, canSelectDate dateComponents: DateComponents?) -> Bool {
-        // Return `true` to allow a date selection; a nil date clears the selection.
-        // Require a date selection by returning false if dateComponents is nil.
-        return dateComponents != nil
+    override func dayViewDidSelectEventView(_ eventView: EventView) {
+        print("Event has been selected: \(eventView)")
     }
     
-    @available(iOS 16.0, *)
-    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        
+    override func dayViewDidLongPressEventView(_ eventView: EventView) {
+        print("Event has been longPressed: \(eventView)")
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
