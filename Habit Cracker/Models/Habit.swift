@@ -15,7 +15,7 @@ class Habit: Codable {
     var showDaysElapsed: Bool = true
     var trackedDays = TrackedDays()
     var notificationIdentifier: String = ""
-    var reminderDate: Date = Date()
+    var reminderTime: Date = Date()
     var reminderHour = Int()
     var reminderMinute = Int()
     

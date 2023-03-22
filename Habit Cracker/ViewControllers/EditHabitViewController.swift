@@ -69,6 +69,7 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
             let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: self.reminderDatePicker.date)
             self.habit.reminderHour = timeComponents.hour ?? 6
             self.habit.reminderMinute = timeComponents.minute ?? 0
+            self.habit.reminderTime = self.reminderDatePicker.date
             
             self.habit.trackedDays = self.daySelectionView.trackedDays
             

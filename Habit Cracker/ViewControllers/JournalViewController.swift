@@ -13,26 +13,29 @@ class JournalViewController: DayViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        habitList = Habit.readHabitFile() // Get events (models) from the storage / API
         
         navigationItem.title = "Journal"
-        //        habitList = Habit.readHabitFile()
-        //        dayView.timelinePagerView.isHidden = true
+        dayView.timelinePagerView.autoScrollToFirstEvent = true
         
-        //        var style = CalendarStyle()
-        //        style.header.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
-        //        style.timeline.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
-        //        dayView.updateStyle(style)
+        var style = CalendarStyle()
+        style.timeline.separatorColor = .clear
+        dayView.updateStyle(style)
         
         
         // Do any additional setup after loading the view.
     }
     
+//    override func viewDidLayoutSubviews() {
+//        dayView.reloadData()
+//        habitList = Habit.readHabitFile() // Get events (models) from the storage / API
+//    }
+//    
     override func eventsForDate(_ date: Date) -> [EventDescriptor] {
         let habitList = Habit.readHabitFile() // Get events (models) from the storage / API
         print(date, Calendar.current.component(.weekday, from: date))
         
         var events = [Event]()
-        let endDate = Calendar.current.date(byAdding: .minute, value: 30, to: Date())
         
         for habit in habitList {
             // Create new EventView
@@ -43,7 +46,15 @@ class JournalViewController: DayViewController {
                 dayInt += 1
                 if(dayInt == Calendar.current.component(.weekday, from: date) && day.value as! Bool == true) {
                     let event = Event()
-                    event.dateInterval = DateInterval(start: habit.reminderDate, end: endDate!)
+                    
+                    var startDate = date
+                    startDate = Calendar.current.date(bySetting: .hour, value: Calendar.current.component(.hour, from: habit.reminderTime), of: startDate)!
+                    startDate = Calendar.current.date(bySetting: .minute, value: Calendar.current.component(.minute, from: habit.reminderTime), of: startDate)!
+                    
+                    var endDate = date
+                    endDate = Calendar.current.date(byAdding: .minute, value: 30, to: startDate)!
+                    print(startDate, endDate)
+                    event.dateInterval = DateInterval(start: startDate, end: endDate)
                     
                     let info = [habit.habitName, String(habit.daysElapsed)]
                     event.text = info.reduce("", {$0 + $1 + "\n"})
@@ -51,6 +62,9 @@ class JournalViewController: DayViewController {
                 }
             }
         }
+        events.forEach({
+            print($0.dateInterval)
+        })
         return events
     }
     
