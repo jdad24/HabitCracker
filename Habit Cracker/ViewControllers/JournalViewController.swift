@@ -25,12 +25,10 @@ class JournalViewController: DayViewController {
         
         // Do any additional setup after loading the view.
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        dayView.reloadData()
-//        habitList = Habit.readHabitFile() // Get events (models) from the storage / API
-//    }
-//    
+    override func viewWillAppear(_ animated: Bool) {
+        habitList = Habit.readHabitFile() // Get events (models) from the storage / API
+        dayView.reloadData()
+    }
     override func eventsForDate(_ date: Date) -> [EventDescriptor] {
         let habitList = Habit.readHabitFile() // Get events (models) from the storage / API
         print(date, Calendar.current.component(.weekday, from: date))
