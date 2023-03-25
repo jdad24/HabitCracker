@@ -17,7 +17,12 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         // Do any additional setup after loading the view.
         table.delegate = self
         table.dataSource = self
-        table.backgroundColor = .black
+        
+        if(darkMode) {
+            table.backgroundColor = ThemeControl.darkModeBackgroundColor
+        } else {
+            table.backgroundColor = ThemeControl.lightModeBackgroundColor
+        }
         
         setup()
     }
@@ -36,8 +41,13 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
     func setup() {
         view.addSubview(table)
         
+        if(darkMode) {
+            table.backgroundColor = ThemeControl.darkModeBackgroundColor
+        } else {
+            table.backgroundColor = ThemeControl.lightModeBackgroundColor
+        }
+        
         table.isScrollEnabled = true
-        table.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         
         let createHabitAction = UIAction() { _ in
             self.navigationController?.pushViewController(CreateHabitViewController(), animated: true)
@@ -81,12 +91,9 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         habit.calculateDaysElapsed() //Calculate number of days since habit tracked
 
         cell.textLabel?.text = habit.habitName.capitalized
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         cell.detailTextLabel?.text = "\(habit.daysElapsed) Days Elapsed"
-        
-//        cell.detailTextLabel?.text = """
-//Days Cracked: \(habit.daysElapsed)
-//Set Reminder? \(habit.showReminder ? "Yes" : "No")
-//"""
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 14)
         
         return cell
     }

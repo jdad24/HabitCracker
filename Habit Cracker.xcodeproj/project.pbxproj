@@ -18,6 +18,7 @@
 		76640AFD28EF3189006B770A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76640AFC28EF3189006B770A /* BaseViewController.swift */; };
 		767B4FBF29C5155F003F692F /* UIViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767B4FBE29C5155F003F692F /* UIViewUtils.swift */; };
 		767B4FC229C8B666003F692F /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 767B4FC129C8B666003F692F /* CalendarKit */; };
+		767B4FC429CEB8A6003F692F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767B4FC329CEB8A6003F692F /* Theme.swift */; };
 		76A9D2CB2989E99400757044 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A9D2CA2989E99400757044 /* BubbleView.swift */; };
 		76D39A3A29C0F6010044BFCD /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D39A3929C0F6010044BFCD /* JournalViewController.swift */; };
 		76D39A3C29C10F970044BFCD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D39A3B29C10F970044BFCD /* CalendarView.swift */; };
@@ -61,6 +62,7 @@
 		76640AFA28EF303F006B770A /* EditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitViewController.swift; sourceTree = "<group>"; };
 		76640AFC28EF3189006B770A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		767B4FBE29C5155F003F692F /* UIViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUtils.swift; sourceTree = "<group>"; };
+		767B4FC329CEB8A6003F692F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		76A9D2CA2989E99400757044 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		76D39A3929C0F6010044BFCD /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		76D39A3B29C10F970044BFCD /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		767B4FC529CEB8AE003F692F /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				767B4FC329CEB8A6003F692F /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		76E8292B28CAA00400C45758 = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +192,7 @@
 				76E8294028CAA00600C45758 /* Assets.xcassets */,
 				76E8294228CAA00600C45758 /* LaunchScreen.storyboard */,
 				76E8294528CAA00600C45758 /* Info.plist */,
+				767B4FC529CEB8AE003F692F /* Theme */,
 			);
 			path = "Habit Cracker";
 			sourceTree = "<group>";
@@ -352,6 +363,7 @@
 				760238D8291AC08A00D22B43 /* StringUtils.swift in Sources */,
 				76E8293828CAA00400C45758 /* AppDelegate.swift in Sources */,
 				76640AFD28EF3189006B770A /* BaseViewController.swift in Sources */,
+				767B4FC429CEB8A6003F692F /* Theme.swift in Sources */,
 				76E8297028CD30BD00C45758 /* CreateHabitViewController.swift in Sources */,
 				76640AFB28EF303F006B770A /* EditHabitViewController.swift in Sources */,
 				76410E132908D8C5008E371E /* HabitNotifications.swift in Sources */,

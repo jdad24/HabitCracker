@@ -47,21 +47,6 @@ class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
         removeBubbleViews()
     }
     
-    func setup() {
-        let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "EEEE \n MMMM dd, yyyy \n h:mm a"
-        
-        let date = dateFormater.string(from: Date())
-        
-        timeLabel.numberOfLines = 0
-        timeLabel.textAlignment = .center
-        timeLabel.text = """
-\(date)
-"""
-        
-        view.addSubview(timeLabel)
-    }
-    
     func createBubbleViews() {
         let weekday = Calendar.current.component(.weekday, from: Date())
         habitList = Habit.readHabitFile()
@@ -117,10 +102,19 @@ class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
         
     }
     
-//    func collisionBehavior(_ behavior: UICollisionBehavior, beganContactFor item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, at p: CGPoint) {
-//        print("Boundary contact with: \(identifier)")
-//    }
-
+    //    func setup() {
+    //        let dateFormater = DateFormatter()
+    //        dateFormater.dateFormat = "EEEE \n MMMM dd, yyyy \n h:mm a"
+    //
+    //        let date = dateFormater.string(from: Date())
+    //
+    //        timeLabel.numberOfLines = 0
+    //        timeLabel.textAlignment = .center
+    //        timeLabel.text = """
+    //\(date)
+    //"""
+    //        view.addSubview(timeLabel)
+    //    }
 
 }
 

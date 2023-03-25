@@ -8,24 +8,23 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    let themeControl = ThemeControl()
+    var darkMode = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
-        UILabel.appearance().textColor = .white
-//        UILabel.appearance().font = UIFont(name: "Arial", size: 30)
-//        UITextField.appearance().font = UIFont(name: "Arial", size: 30)
+        
+        if(darkMode) {
+            view.backgroundColor = ThemeControl.darkModeBackgroundColor
+            UILabel.appearance().textColor = ThemeControl.darkModeTextColor
+        } else {
+            view.backgroundColor = ThemeControl.lightModeBackgroundColor
+            UILabel.appearance().textColor = ThemeControl.lightModeTextColor
+        }
         
         // Do any additional setup after loading the view.
     }
     
-    
-//    override func present(_ viewControllerToPresent: UIViewController,
-//                            animated flag: Bool,
-//                            completion: (() -> Void)? = nil) {
-//        viewControllerToPresent.modalPresentationStyle = .formSheet
-//        super.present(viewControllerToPresent, animated: flag, completion: completion)
-//      }
     /*
     // MARK: - Navigation
 

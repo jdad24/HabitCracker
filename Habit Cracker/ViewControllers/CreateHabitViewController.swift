@@ -33,6 +33,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         super.viewDidLoad()
         habitNameTextTield.delegate = self
         habitNameTextTield.returnKeyType = UIReturnKeyType.done
+        
         // Do any additional setup after loading the view.
         setup()
     }
@@ -42,7 +43,6 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func showReminderDatePicker() {
-        
         reminderDatePicker.backgroundColor = .white
         view.addSubview(reminderDatePicker)
 
@@ -98,31 +98,23 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
             self.habit.showReminder ? HabitNotifications.scheduleLocal(habit: self.habit) : print("No Schedule")
             self.navigationController?.popViewController(animated: true)
             
-            
         })
 
         submitButton.setImage(plusImage, for: .normal)
         submitButton.setTitleColor(.white, for: UIControl.State.normal)
         submitButton.backgroundColor = .clear
-//        submitButton.layer.borderColor = CGColor(red: 0, green: 0, blue: 1, alpha: 1.0)
-//        submitButton.layer.borderWidth = 3
         
         reminderSwitch.addTarget(self, action: #selector(onReminderSwitchValueChange), for: .valueChanged)
        
         
         view.addSubview(habitNameLabel)
         view.addSubview(habitNameTextTield)
-        
         view.addSubview(daySelectionLabel)
         view.addSubview(daySelectionView)
-        
         view.addSubview(showDaysElapsedLabel)
         view.addSubview(showDaysElapsedSwitch)
-        
         view.addSubview(reminderLabel)
         view.addSubview(reminderSwitch)
-        
-        
         view.addSubview(submitButton)
     }
     

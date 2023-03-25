@@ -126,7 +126,7 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
         daySelectionView.centerYAnchor.constraint(equalTo: daySelectionLabel.centerYAnchor).isActive = true
         daySelectionView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        daysElapsedLabel.text = "Days Cracked"
+        daysElapsedLabel.text = "Days Elapsed"
         daysElapsedLabel.translatesAutoresizingMaskIntoConstraints = false
         daysElapsedLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
         daysElapsedLabel.topAnchor.constraint(equalTo: daySelectionLabel.bottomAnchor, constant: 50).isActive = true
@@ -166,8 +166,8 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func showReminderDatePicker() {
-        
         reminderDatePicker.backgroundColor = .white
+        reminderDatePicker.date = habit.reminderTime
         view.addSubview(reminderDatePicker)
 
         reminderDatePicker.translatesAutoresizingMaskIntoConstraints = false

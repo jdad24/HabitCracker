@@ -13,26 +13,38 @@ class JournalViewController: DayViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        habitList = Habit.readHabitFile() // Get events (models) from the storage / API
+        // Do any additional setup after loading the view.
         
+        view.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        UILabel.appearance().textColor = .white
         navigationItem.title = "Journal"
+        
         dayView.timelinePagerView.autoScrollToFirstEvent = true
         
         var style = CalendarStyle()
+        style.header.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        style.header.daySelector.inactiveTextColor = .white
+        style.header.daySelector.weekendTextColor = .white
+        style.header.daySelector.todayActiveTextColor = .black
+        style.header.daySelector.todayActiveBackgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.8, alpha: 1.0)
+        style.header.daySymbols.weekendColor = .white
+        style.header.daySymbols.weekDayColor = .white
+        style.header.swipeLabel.textColor = .white
+        
         style.timeline.separatorColor = .clear
+        style.timeline.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        style.timeline.timeColor = .white
+        
         dayView.updateStyle(style)
-        
-        
-        // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         habitList = Habit.readHabitFile() // Get events (models) from the storage / API
         dayView.reloadData()
     }
+    
     override func eventsForDate(_ date: Date) -> [EventDescriptor] {
         let habitList = Habit.readHabitFile() // Get events (models) from the storage / API
-        print(date, Calendar.current.component(.weekday, from: date))
-        
         var events = [Event]()
         
         for habit in habitList {
@@ -44,6 +56,7 @@ class JournalViewController: DayViewController {
                 dayInt += 1
                 if(dayInt == Calendar.current.component(.weekday, from: date) && day.value as! Bool == true) {
                     let event = Event()
+                    event.textColor = .white
                     
                     var startDate = date
                     startDate = Calendar.current.date(bySetting: .hour, value: Calendar.current.component(.hour, from: habit.reminderTime), of: startDate)!
@@ -51,7 +64,6 @@ class JournalViewController: DayViewController {
                     
                     var endDate = date
                     endDate = Calendar.current.date(byAdding: .minute, value: 30, to: startDate)!
-                    print(startDate, endDate)
                     event.dateInterval = DateInterval(start: startDate, end: endDate)
                     
                     let info = [habit.habitName, String(habit.daysElapsed)]
