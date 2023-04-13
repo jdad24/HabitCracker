@@ -30,7 +30,8 @@ class BubbleView: UIView {
         habitLabel.text = habit.habitName
         
         habit.calculateDaysElapsed()
-        daysLabel.text = String(habit.daysElapsed)
+        daysLabel.font = UIFont.systemFont(ofSize: 12)
+        daysLabel.text = String(habit.daysElapsed) + " Days"
     }
     
     override func didMoveToSuperview() {
@@ -41,7 +42,7 @@ class BubbleView: UIView {
         
         addSubview(daysLabel)
         daysLabel.translatesAutoresizingMaskIntoConstraints = false
-        daysLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        daysLabel.topAnchor.constraint(equalTo: habitLabel.bottomAnchor, constant: 15).isActive = true
         daysLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         daysLabel.layer.zPosition = -10
         

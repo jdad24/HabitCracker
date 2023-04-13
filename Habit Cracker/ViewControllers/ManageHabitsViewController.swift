@@ -18,12 +18,6 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         table.delegate = self
         table.dataSource = self
         
-        if(darkMode) {
-            table.backgroundColor = ThemeControl.darkModeBackgroundColor
-        } else {
-            table.backgroundColor = ThemeControl.lightModeBackgroundColor
-        }
-        
         setup()
     }
     
@@ -32,6 +26,12 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         table.reloadData()
         
         navigationItem.title = "Manage Habits"
+        
+        if(UITraitCollection.current.userInterfaceStyle == .dark) {
+            table.backgroundColor = ThemeProperties.darkModeBackgroundColor
+        } else {
+            table.backgroundColor = ThemeProperties.lightModeBackgroundColor
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -40,13 +40,6 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
     
     func setup() {
         view.addSubview(table)
-        
-        if(darkMode) {
-            table.backgroundColor = ThemeControl.darkModeBackgroundColor
-        } else {
-            table.backgroundColor = ThemeControl.lightModeBackgroundColor
-        }
-        
         table.isScrollEnabled = true
         
         let createHabitAction = UIAction() { _ in
@@ -100,7 +93,6 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        let fileName = "HabitList.txt"
         
         let action = UIContextualAction(style: .destructive, title: "Delete") { (actions, view, completionHander) in
             HabitNotifications.deleteLocal(habit: self.habitList[indexPath.section])
@@ -108,7 +100,7 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
             self.habitList.remove(at: indexPath.section)
             let data = self.habitList.encode()
             do {
-                try data.write(to: url.appendingPathComponent(fileName))
+                try data.write(to: url.appendingPathComponent(TextFiles.habitListFile))
                 self.table.reloadData()
                 completionHander(true)
             } catch {

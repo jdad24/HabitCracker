@@ -53,24 +53,23 @@ class Habit: Codable {
     
     static func saveHabit(_ habit: Habit) {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileName = "HabitList.txt"
         var habitList = [Habit]()
         
         do {
-            let previous = try Data(contentsOf: url.appendingPathComponent(fileName))
+            let previous = try Data(contentsOf: url.appendingPathComponent(TextFiles.habitListFile))
             if let previousDecoded = Habit.decode(data: previous){
                 habitList = previousDecoded
                 habitList.append(habit)
             
                 let encodedHabitList = habitList.encode()
-                try encodedHabitList.write(to: url.appendingPathComponent(fileName))
+                try encodedHabitList.write(to: url.appendingPathComponent(TextFiles.habitListFile))
                 }
             } catch {
                 habitList.append(habit)
                 let encodedHabitList = habitList.encode()
                 
                 do {
-                    try encodedHabitList.write(to: url.appendingPathComponent(fileName))
+                    try encodedHabitList.write(to: url.appendingPathComponent(TextFiles.habitListFile))
                 } catch {
                     print("Write error")
                 }
@@ -80,17 +79,16 @@ class Habit: Codable {
     
     static func updateHabit(_ habit: Habit, habitIndex: Int) {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileName = "HabitList.txt"
         var habitList = [Habit]()
 
         do {
-            let previous = try Data(contentsOf: url.appendingPathComponent(fileName))
+            let previous = try Data(contentsOf: url.appendingPathComponent(TextFiles.habitListFile))
             if let previousDecoded = Habit.decode(data: previous){
                 habitList = previousDecoded
                 habitList[habitIndex] = habit
                 
                 let encodedHabitList = habitList.encode()
-                try encodedHabitList.write(to: url.appendingPathComponent(fileName))
+                try encodedHabitList.write(to: url.appendingPathComponent(TextFiles.habitListFile))
             }
         } catch {
             print("Error updating habit")
@@ -99,10 +97,9 @@ class Habit: Codable {
     
     static func readHabitFile() -> [Habit] {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return [] }
-        let fileName = "HabitList.txt"
         
         do {
-            let data = try Data(contentsOf: url.appendingPathComponent(fileName))
+            let data = try Data(contentsOf: url.appendingPathComponent(TextFiles.habitListFile))
             
             guard let decodedHabit = Habit.decode(data: data) else {
                 print("READ ERROR")

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let todayViewController = TodayViewController()
         let manageHabitsViewController = ManageHabitsViewController()
-        let settingsViewController = SettingsViewController()
+//        let settingsViewController = SettingsViewController()
         let journalViewController = JournalViewController()
         
         let tabBarController = UITabBarController()

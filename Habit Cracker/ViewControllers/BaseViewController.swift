@@ -6,21 +6,25 @@
 //
 
 import UIKit
+import os
 
 class BaseViewController: UIViewController {
-    let themeControl = ThemeControl()
-    var darkMode = true
+    let logger = Logger()
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if(UITraitCollection.current.userInterfaceStyle == .dark) {
+            view.backgroundColor = ThemeProperties.darkModeBackgroundColor
+            UILabel.appearance().textColor = ThemeProperties.darkModeTextColor
+        } else {
+            view.backgroundColor = ThemeProperties.lightModeBackgroundColor
+            UILabel.appearance().textColor = ThemeProperties.lightModeTextColor
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if(darkMode) {
-            view.backgroundColor = ThemeControl.darkModeBackgroundColor
-            UILabel.appearance().textColor = ThemeControl.darkModeTextColor
-        } else {
-            view.backgroundColor = ThemeControl.lightModeBackgroundColor
-            UILabel.appearance().textColor = ThemeControl.lightModeTextColor
-        }
         
         // Do any additional setup after loading the view.
     }

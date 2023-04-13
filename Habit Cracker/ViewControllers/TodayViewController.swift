@@ -17,13 +17,12 @@ class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Today"
         // Do any additional setup after loading the view.
 //        setup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       navigationItem.title = "Today"
-        
+//    override func viewWillAppear(_ animated: Bool) {
 //        animator = UIDynamicAnimator(referenceView: view)
 //        gravity = UIGravityBehavior(items: [])
 //        collision = UICollisionBehavior(items: [])
@@ -32,7 +31,7 @@ class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
 //        animator.addBehavior(collision)
 //
 //        collision.collisionDelegate = self
-    }
+//    }
     
     override func viewDidLayoutSubviews() {
 //        enableConstraints()

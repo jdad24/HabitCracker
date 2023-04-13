@@ -13,9 +13,15 @@ class HabitTableViewCell: UITableViewCell {
     init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, habit: Habit) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.8)
-        textLabel?.textColor = .white
-        detailTextLabel?.textColor = .white
+        if(UITraitCollection.current.userInterfaceStyle == .dark) {
+            self.backgroundColor = ThemeProperties.darkModeCellBackgroundColor
+            textLabel?.textColor = ThemeProperties.darkModeCellTextColor
+            detailTextLabel?.textColor = ThemeProperties.darkModeCellTextColor
+        } else {
+            self.backgroundColor = ThemeProperties.lightModeCellBackgroundColor
+            textLabel?.textColor = ThemeProperties.lightModeCellTextColor
+            detailTextLabel?.textColor = ThemeProperties.lightModeCellTextColor
+        }
         
         let daySelectionView = DaySelectionView(trackedDays: habit.trackedDays)
         let trackedDaysLabel = UILabel()
