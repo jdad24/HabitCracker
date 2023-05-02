@@ -20,6 +20,9 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
     let daysElapsedLabel = UILabel()
     let daysElapsedValueLabel = UILabel()
     
+    let showDaysElapsedLabel = UILabel()
+    let showDaysElapsedSwitch = UISwitch()
+    
     let reminderLabel = UILabel()
     let reminderSwitch = UISwitch()
     
@@ -56,10 +59,12 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
         habitNameTextField.returnKeyType = .done
         habitNameTextField.textColor = .white
         
+        showDaysElapsedSwitch.isOn = habit.showDaysElapsed
         reminderDatePicker.accessibilityIdentifier = "reminderDatePicker"
         reminderDatePicker.datePickerMode = UIDatePicker.Mode.time
         
         reminderSwitch.addTarget(self, action: #selector(onReminderSwitchValueChange), for: .valueChanged)
+        showDaysElapsedSwitch.addTarget(self, action: #selector(onDaysElapsedSwitchValueChange), for: .valueChanged)
         
         editButton = UIButton(primaryAction: UIAction() { action in
             self.habit.habitName = self.habitNameTextField.text ?? ""
@@ -98,6 +103,8 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
         view.addSubview(daySelectionLabel)
         view.addSubview(daySelectionView)
         view.addSubview(daysElapsedLabel)
+        view.addSubview(showDaysElapsedLabel)
+        view.addSubview(showDaysElapsedSwitch)
         view.addSubview(daysElapsedValueLabel)
         view.addSubview(reminderLabel)
         view.addSubview(reminderSwitch)
@@ -135,11 +142,20 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
         daysElapsedValueLabel.translatesAutoresizingMaskIntoConstraints = false
         daysElapsedValueLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
         daysElapsedValueLabel.topAnchor.constraint(equalTo: daysElapsedLabel.topAnchor).isActive = true
+        
+        showDaysElapsedLabel.text = "Show Days Elapsed?"
+        showDaysElapsedLabel.translatesAutoresizingMaskIntoConstraints = false
+        showDaysElapsedLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
+        showDaysElapsedLabel.topAnchor.constraint(equalTo: daysElapsedLabel.bottomAnchor, constant: 50).isActive = true
+        
+        showDaysElapsedSwitch.translatesAutoresizingMaskIntoConstraints = false
+        showDaysElapsedSwitch.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+        showDaysElapsedSwitch.centerYAnchor.constraint(equalTo: showDaysElapsedLabel.centerYAnchor).isActive = true
     
         reminderLabel.text = "Set reminder?"
         reminderLabel.translatesAutoresizingMaskIntoConstraints = false
         reminderLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        reminderLabel.topAnchor.constraint(equalTo: daysElapsedLabel.bottomAnchor, constant: 50).isActive = true
+        reminderLabel.topAnchor.constraint(equalTo: showDaysElapsedLabel.bottomAnchor, constant: 50).isActive = true
         
         reminderSwitch.isOn = habit.showReminder
         reminderSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -165,8 +181,11 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
         setReminderTime ? showReminderDatePicker(): removeReminderDatePicker()
     }
     
+    @objc func onDaysElapsedSwitchValueChange() {
+        habit.showDaysElapsed = showDaysElapsedSwitch.isOn
+    }
+    
     func showReminderDatePicker() {
-        reminderDatePicker.backgroundColor = .white
         reminderDatePicker.date = habit.reminderTime
         view.addSubview(reminderDatePicker)
 

@@ -17,9 +17,11 @@ class BaseViewController: UIViewController {
         if(UITraitCollection.current.userInterfaceStyle == .dark) {
             view.backgroundColor = ThemeProperties.darkModeBackgroundColor
             UILabel.appearance().textColor = ThemeProperties.darkModeTextColor
+            UITextField.appearance().textColor = ThemeProperties.darkModeTextColor
         } else {
             view.backgroundColor = ThemeProperties.lightModeBackgroundColor
             UILabel.appearance().textColor = ThemeProperties.lightModeTextColor
+            UITextField.appearance().textColor = ThemeProperties.lightModeTextColor
         }
     }
     

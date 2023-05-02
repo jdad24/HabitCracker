@@ -11,7 +11,7 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
     var habit = Habit()
     
     let habitNameLabel = UILabel()
-    let habitNameTextTield = UITextField()
+    let habitNameTextField = UITextField()
     
     let daySelectionLabel = UILabel()
     let daySelectionView = DaySelectionView(frame: .zero)
@@ -31,8 +31,8 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        habitNameTextTield.delegate = self
-        habitNameTextTield.returnKeyType = UIReturnKeyType.done
+        habitNameTextField.delegate = self
+        habitNameTextField.returnKeyType = UIReturnKeyType.done
         
         // Do any additional setup after loading the view.
         setup()
@@ -43,7 +43,6 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func showReminderDatePicker() {
-        reminderDatePicker.backgroundColor = .white
         view.addSubview(reminderDatePicker)
 
         reminderDatePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -70,10 +69,20 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         reminderLabel.text = "Set Reminder?"
         showDaysElapsedLabel.text = "Show Days Elapsed"
         
-        habitNameTextTield.placeholder = "Enter your habit"
-        habitNameTextTield.textAlignment = .right
-        habitNameTextTield.textColor = .white
-        habitNameTextTield.attributedPlaceholder = NSAttributedString(string: habitNameTextTield.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)])
+        habitNameTextField.placeholder = "Enter your habit"
+        habitNameTextField.textAlignment = .right
+        
+        if(UITraitCollection.current.userInterfaceStyle == .dark) {
+            view.backgroundColor = ThemeProperties.darkModeBackgroundColor
+            UILabel.appearance().textColor = ThemeProperties.darkModeTextColor
+            UITextField.appearance().textColor = ThemeProperties.darkModeTextColor
+            habitNameTextField.attributedPlaceholder = NSAttributedString(string: habitNameTextField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)])
+        } else {
+            view.backgroundColor = ThemeProperties.lightModeBackgroundColor
+            UILabel.appearance().textColor = ThemeProperties.lightModeTextColor
+            UITextField.appearance().textColor = ThemeProperties.lightModeTextColor
+            habitNameTextField.attributedPlaceholder = NSAttributedString(string: habitNameTextField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)])
+        }
         
         submitButton = UIButton(primaryAction: UIAction() {_ in
             if self.habit.habitName.isEmpty {
@@ -105,10 +114,11 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         submitButton.backgroundColor = .clear
         
         reminderSwitch.addTarget(self, action: #selector(onReminderSwitchValueChange), for: .valueChanged)
+        showDaysElapsedSwitch.addTarget(self, action: #selector(onDaysElapsedSwitchValueChange), for: .valueChanged)
        
         
         view.addSubview(habitNameLabel)
-        view.addSubview(habitNameTextTield)
+        view.addSubview(habitNameTextField)
         view.addSubview(daySelectionLabel)
         view.addSubview(daySelectionView)
         view.addSubview(showDaysElapsedLabel)
@@ -125,15 +135,19 @@ class CreateHabitViewController: BaseViewController, UITextFieldDelegate {
         setReminderTime ? showReminderDatePicker(): removeReminderDatePicker()
     }
     
+    @objc func onDaysElapsedSwitchValueChange() {
+        habit.showDaysElapsed = showDaysElapsedSwitch.isOn
+    }
+    
     func setConstraints() {
         habitNameLabel.translatesAutoresizingMaskIntoConstraints = false
         habitNameLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
         habitNameLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
         
-        habitNameTextTield.translatesAutoresizingMaskIntoConstraints = false
-        habitNameTextTield.centerYAnchor.constraint(equalTo: habitNameLabel.centerYAnchor).isActive = true
-        habitNameTextTield.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
-        habitNameTextTield.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5).isActive = true
+        habitNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        habitNameTextField.centerYAnchor.constraint(equalTo: habitNameLabel.centerYAnchor).isActive = true
+        habitNameTextField.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+        habitNameTextField.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5).isActive = true
         
         daySelectionLabel.translatesAutoresizingMaskIntoConstraints = false
         daySelectionLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true

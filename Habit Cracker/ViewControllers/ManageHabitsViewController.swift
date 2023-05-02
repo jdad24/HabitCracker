@@ -82,10 +82,10 @@ class ManageHabitsViewController: BaseViewController, UITableViewDelegate, UITab
         let cell = HabitTableViewCell(style: .subtitle, reuseIdentifier: "HabitCell", habit: habit)
         
         habit.calculateDaysElapsed() //Calculate number of days since habit tracked
-
+    
         cell.textLabel?.text = habit.habitName.capitalized
         cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
-        cell.detailTextLabel?.text = "\(habit.daysElapsed) Days Elapsed"
+        cell.detailTextLabel?.text = habit.showDaysElapsed ? "\(habit.daysElapsed) Days Elapsed" : nil
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 14)
         
         return cell

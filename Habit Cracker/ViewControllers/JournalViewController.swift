@@ -16,25 +16,40 @@ class JournalViewController: DayViewController {
         // Do any additional setup after loading the view.
         
         view.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
-        UILabel.appearance().textColor = .white
         navigationItem.title = "Journal"
         
         dayView.timelinePagerView.autoScrollToFirstEvent = true
         
         var style = CalendarStyle()
-        style.header.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
-        style.header.daySelector.inactiveTextColor = .white
-        style.header.daySelector.weekendTextColor = .white
-        style.header.daySelector.todayActiveTextColor = .black
-        style.header.daySelector.todayActiveBackgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.8, alpha: 1.0)
-        style.header.daySymbols.weekendColor = .white
-        style.header.daySymbols.weekDayColor = .white
-        style.header.swipeLabel.textColor = .white
+        
+        if(UITraitCollection.current.userInterfaceStyle == .dark) {
+            style.header.backgroundColor = ThemeProperties.journal.darkModeBackgroundColor
+            style.header.daySelector.inactiveTextColor = ThemeProperties.journal.darkModePrimaryTextColor
+            style.header.daySelector.weekendTextColor = ThemeProperties.journal.darkModePrimaryTextColor
+            style.header.daySelector.todayActiveTextColor = ThemeProperties.journal.darkModeTodayActiveTextColor
+            style.header.daySelector.todayInactiveTextColor = ThemeProperties.journal.activeBackgroundColor
+            style.header.daySelector.todayActiveBackgroundColor = ThemeProperties.journal.activeBackgroundColor
+            style.header.daySymbols.weekendColor = ThemeProperties.journal.darkModePrimaryTextColor
+            style.header.daySymbols.weekDayColor = ThemeProperties.journal.darkModePrimaryTextColor
+            style.header.swipeLabel.textColor = ThemeProperties.journal.darkModePrimaryTextColor
+            style.timeline.backgroundColor = ThemeProperties.journal.darkModeBackgroundColor
+            style.timeline.timeColor = ThemeProperties.journal.darkModePrimaryTextColor
+        } else {
+            style.header.backgroundColor = ThemeProperties.journal.lightModeBackgroundColor
+            style.header.daySelector.inactiveTextColor = ThemeProperties.journal.lightModePrimaryTextColor
+            style.header.daySelector.weekendTextColor = ThemeProperties.journal.lightModePrimaryTextColor
+            style.header.daySelector.todayActiveTextColor = ThemeProperties.journal.lightModeTodayActiveTextColor
+            style.header.daySelector.todayInactiveTextColor = ThemeProperties.journal.activeBackgroundColor
+            style.header.daySelector.todayActiveBackgroundColor = ThemeProperties.journal.activeBackgroundColor
+            style.header.daySymbols.weekendColor = ThemeProperties.journal.lightModePrimaryTextColor
+            style.header.daySymbols.weekDayColor = ThemeProperties.journal.lightModePrimaryTextColor
+            style.header.swipeLabel.textColor = ThemeProperties.journal.lightModePrimaryTextColor
+            style.timeline.backgroundColor = ThemeProperties.journal.lightModeBackgroundColor
+            style.timeline.timeColor = ThemeProperties.journal.lightModePrimaryTextColor
+        }
         
         style.timeline.separatorColor = .clear
-        style.timeline.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
-        style.timeline.timeColor = .white
-        
+        style.timeline.timeIndicator.color = ThemeProperties.journal.activeBackgroundColor
         dayView.updateStyle(style)
     }
     
