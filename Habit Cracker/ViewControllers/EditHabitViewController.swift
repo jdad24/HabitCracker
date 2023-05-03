@@ -121,6 +121,7 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
         habitNameTextField.topAnchor.constraint(equalTo: habitNameLabel.topAnchor).isActive = true
         
         daySelectionLabel.text = "Select Days to Track"
+        daySelectionLabel.numberOfLines = 2
         daySelectionLabel.translatesAutoresizingMaskIntoConstraints = false
         daySelectionLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
         daySelectionLabel.topAnchor.constraint(equalTo: habitNameLabel.bottomAnchor, constant: 30).isActive = true
@@ -136,7 +137,7 @@ class EditHabitViewController: BaseViewController, UITextFieldDelegate {
         daysElapsedLabel.text = "Days Elapsed"
         daysElapsedLabel.translatesAutoresizingMaskIntoConstraints = false
         daysElapsedLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 20).isActive = true
-        daysElapsedLabel.topAnchor.constraint(equalTo: daySelectionLabel.bottomAnchor, constant: 50).isActive = true
+        daysElapsedLabel.topAnchor.constraint(equalTo: daySelectionLabel.bottomAnchor, constant: 40).isActive = true
         
         daysElapsedValueLabel.text = "\(habit.daysElapsed)"
         daysElapsedValueLabel.translatesAutoresizingMaskIntoConstraints = false
