@@ -54,12 +54,12 @@ class JournalViewController: DayViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        habitList = Habit.readHabitFile() // Get events (models) from the storage / API
+        habitList = Habit.readHabitFile() // Get events (models) from the storage 
         dayView.reloadData()
     }
     
     override func eventsForDate(_ date: Date) -> [EventDescriptor] {
-        let habitList = Habit.readHabitFile() // Get events (models) from the storage / API
+        let habitList = Habit.readHabitFile() // Get events (models) from the storage
         var events = [Event]()
         
         for habit in habitList {

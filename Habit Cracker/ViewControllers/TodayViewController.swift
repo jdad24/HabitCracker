@@ -10,28 +10,13 @@ import UIKit
 class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
     let timeLabel = UILabel()
     var habitList: [Habit] = []
-    
-//    var animator: UIDynamicAnimator!
-//    var gravity: UIGravityBehavior!
-//    var collision: UICollisionBehavior!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Today"
         // Do any additional setup after loading the view.
-//        setup()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        animator = UIDynamicAnimator(referenceView: view)
-//        gravity = UIGravityBehavior(items: [])
-//        collision = UICollisionBehavior(items: [])
-//        collision.translatesReferenceBoundsIntoBoundary = true
-//        animator.addBehavior(gravity)
-//        animator.addBehavior(collision)
-//
-//        collision.collisionDelegate = self
-//    }
     
     override func viewDidLayoutSubviews() {
 //        enableConstraints()
@@ -70,14 +55,6 @@ class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
                     bubbleView.layer.position.x = Double.random(in: (bubbleView.frame.size.width*0.75)..<(view.frame.width-bubbleView.frame.size.width*0.75))
                     bubbleView.layer.position.y = Double.random(in: (bubbleView.frame.size.height*0.75)..<(view.frame.height-bubbleView.frame.size.height*0.75))
                     view.addSubview(bubbleView)
-                    
-//                    let bubbleBehavior = UIDynamicItemBehavior(items: [bubbleView])
-//                    bubbleBehavior.elasticity = 1.0
-//                    bubbleBehavior.allowsRotation = false
-//                    animator.addBehavior(bubbleBehavior)
-//
-//                    gravity.addItem(bubbleView)
-//                    collision.addItem(bubbleView)
                 }
 
             }
@@ -100,20 +77,5 @@ class TodayViewController: BaseViewController, UICollisionBehaviorDelegate {
         timeLabel.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2).isActive = true
         
     }
-    
-    //    func setup() {
-    //        let dateFormater = DateFormatter()
-    //        dateFormater.dateFormat = "EEEE \n MMMM dd, yyyy \n h:mm a"
-    //
-    //        let date = dateFormater.string(from: Date())
-    //
-    //        timeLabel.numberOfLines = 0
-    //        timeLabel.textAlignment = .center
-    //        timeLabel.text = """
-    //\(date)
-    //"""
-    //        view.addSubview(timeLabel)
-    //    }
-
 }
 

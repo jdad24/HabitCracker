@@ -49,18 +49,6 @@ class HabitTableViewCell: UITableViewCell {
         daySelectionView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
-    override func draw(_ rect: CGRect) {
-//        let context = UIGraphicsGetCurrentContext()
-//        context?.setLineWidth(3.0)
-//        context?.setStrokeColor(UIColor.black.cgColor)
-//        context?.move(to: CGPoint(x: 10, y: 90))
-//        context?.addLine(to: CGPoint(x: 10, y: 72))
-//        context?.addLine (to: CGPoint(x: 380, y: 72))
-//        context?.addLine(to: CGPoint(x: 380, y: 90))
-//        context?.strokePath()
-//        print("Draw")
-    }
-    
     override func setNeedsLayout() {
         self.layer.cornerRadius = 0.1 * self.frame.width
         self.clipsToBounds = true
