@@ -15,10 +15,17 @@ class JournalViewController: DayViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        view.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         navigationItem.title = "Journal"
         
         dayView.timelinePagerView.autoScrollToFirstEvent = true
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        habitList = Habit.readHabitFile() // Get events (models) from the storage 
+        dayView.reloadData()
+        
+        view.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         
         var style = CalendarStyle()
         
@@ -51,11 +58,6 @@ class JournalViewController: DayViewController {
         style.timeline.separatorColor = .clear
         style.timeline.timeIndicator.color = ThemeProperties.journal.activeBackgroundColor
         dayView.updateStyle(style)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        habitList = Habit.readHabitFile() // Get events (models) from the storage 
-        dayView.reloadData()
     }
     
     override func eventsForDate(_ date: Date) -> [EventDescriptor] {
